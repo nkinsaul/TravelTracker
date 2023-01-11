@@ -1,7 +1,7 @@
 import chai from 'chai';
 class Trips {
-    constructor() {
-
+    constructor(tripData) {
+        this.tripData = tripData
     }
 }
 

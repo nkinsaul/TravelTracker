@@ -99,5 +99,57 @@
     "duration": 17,
     "status": "approved",
     "suggestedActivities": []
-    }
+    },
+    {
+    "id": 117,
+    "userID": 1,
+    "destinationID": 28,
+    "travelers": 3,
+    "date": "2021/01/09",
+    "duration": 15,
+    "status": "approved",
+    "suggestedActivities": []
+    },
+    {
+    "id": 138,
+    "userID": 25,
+    "destinationID": 22,
+    "travelers": 3,
+    "date": "2020/10/29",
+    "duration": 18,
+    "status": "pending",
+    "suggestedActivities": []
+    },
+    {
+    "id": 159,
+    "userID": 25,
+    "destinationID": 42,
+    "travelers": 6,
+    "date": "2020/07/24",
+    "duration": 17,
+    "status": "approved",
+    "suggestedActivities": []
+    },
+    {
+    "id": 189,
+    "userID": 25,
+    "destinationID": 15,
+    "travelers": 4,
+    "date": "2019/12/01",
+    "duration": 10,
+    "status": "approved",
+    "suggestedActivities": []
+    },
+    {
+    "id": 26,
+    "userID": 25,
+    "destinationID": 15,
+    "travelers": 3,
+    "date": "2019/12/10",
+    "duration": 9,
+    "status": "approved",
+    "suggestedActivities": []
+    },
     ]
+
+    export default trips

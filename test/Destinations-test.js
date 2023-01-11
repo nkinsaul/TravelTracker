@@ -15,9 +15,7 @@ describe('Destinations', function() {
     });
 
     it('should be an instance of Destinations', () => {
-        
         expect(newDestination).to.be.an.instanceOf(Destination)
-
     })
 
     it('should have an id', () => {

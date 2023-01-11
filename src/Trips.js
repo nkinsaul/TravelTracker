@@ -1,11 +1,10 @@
-import chai from 'chai';
+
 class Trips {
     constructor(tripData, userId) {
-        this.allTrips = tripData
-        this.usersTrips = this.getTripsForUser(userId)
+        this.usersTrips = this.getTripsForUser(tripData, userId)
     }
-    getTripsForUser(userId) {
-        return this.allTrips.filter(trip => {
+    getTripsForUser(tripData, userId) {
+        return tripData.filter(trip => {
             return trip.userID === userId
         });
     }

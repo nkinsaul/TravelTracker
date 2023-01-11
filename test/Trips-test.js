@@ -116,7 +116,5 @@ describe ("Trips", function() {
             "suggestedActivities": []
             }]);
     });
-
-    
 });
 

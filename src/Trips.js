@@ -7,12 +7,12 @@ class Trips {
     getTripsForUser(userId) {
         return this.allTrips.filter(trip => {
             return trip.userID === userId
-        })
+        });
     }
     findApprovedTrips() {
         return this.usersTrips.filter(trip => {
             return trip.status === 'approved'
-        })
+        });
     }
     findPendingTrips() {
         return this.usersTrips.filter(trip => {

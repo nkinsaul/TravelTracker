@@ -14,6 +14,12 @@ class Trips {
             return trip.status === 'approved'
         })
     }
+    findPendingTrips(userId) {
+        const usersTrips = this.getTripsForUser(userId)
+        return usersTrips.filter(trip => {
+            return trip.status === 'pending'
+        });
+    }
 }
 
 export default Trips

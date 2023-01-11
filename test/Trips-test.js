@@ -99,7 +99,24 @@ describe ("Trips", function() {
             "duration": 9,
             "status": "approved",
             "suggestedActivities": []
-            }])
-    })
-})
+            }]);
+    });
+
+    it('should find pending trips for a user', () => {
+        const user25PendingTrips = tripsData.findPendingTrips(25)
+
+        expect(user25PendingTrips).to.deep.equal([{
+            "id": 138,
+            "userID": 25,
+            "destinationID": 22,
+            "travelers": 3,
+            "date": "2020/10/29",
+            "duration": 18,
+            "status": "pending",
+            "suggestedActivities": []
+            }]);
+    });
+
+    
+});
 

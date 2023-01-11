@@ -25,11 +25,12 @@ describe ("Traveler", function () {
             "id": 1,
             "name": "Ham Leadbeater",
             "travelerType": "relaxer"
-            })
-    })
+            });
+    });
 
     it('should return a single users first name', () => {
-        
-    })
+        const traveler1FirstName = travelerData.getTravelersFirstName(1)
+        expect(traveler1FirstName).to.equal('Ham')
+    });
 
 })

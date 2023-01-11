@@ -9,7 +9,7 @@ class Traveler {
     }
     getTravelersFirstName(userId) {
         const traveler = this.findSingleTraveler(userId)
-        const name = traveler.name.split('')
+        const name = traveler.name.split(' ')
         return name[0]
     }
 }

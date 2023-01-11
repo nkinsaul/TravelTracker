@@ -149,7 +149,7 @@
     "duration": 9,
     "status": "approved",
     "suggestedActivities": []
-    },
+    }
     ]
 
     export default trips

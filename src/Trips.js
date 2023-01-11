@@ -1,22 +1,21 @@
 import chai from 'chai';
 class Trips {
-    constructor(tripData) {
+    constructor(tripData, userId) {
         this.allTrips = tripData
+        this.usersTrips = this.getTripsForUser(userId)
     }
     getTripsForUser(userId) {
         return this.allTrips.filter(trip => {
             return trip.userID === userId
         })
     }
-    findApprovedTrips(userId) {
-        const usersTrips = this.getTripsForUser(userId)
-        return usersTrips.filter(trip => {
+    findApprovedTrips() {
+        return this.usersTrips.filter(trip => {
             return trip.status === 'approved'
         })
     }
-    findPendingTrips(userId) {
-        const usersTrips = this.getTripsForUser(userId)
-        return usersTrips.filter(trip => {
+    findPendingTrips() {
+        return this.usersTrips.filter(trip => {
             return trip.status === 'pending'
         });
     }

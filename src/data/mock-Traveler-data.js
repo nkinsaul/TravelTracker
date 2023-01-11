@@ -49,6 +49,11 @@ let sampleTravelerData = [
     "name": "Rickie Jodlowski",
     "travelerType": "relaxer"
     },
+    {
+    "id": 25,
+    "name": "Leighton Doerrling",
+    "travelerType": "relaxer"
+    },
 ]
 
 export default sampleTravelerData

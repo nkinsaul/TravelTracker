@@ -4,12 +4,12 @@ import Traveler from '../src/Traveler';
 import sampleTravelerData from '../src/data/mock-Traveler-data'
 
 describe ("Traveler", function () {
-    let travelerData;
+    // let travelerData;
     let traveler1;
 
     beforeEach(function () {
-        travelerData = new Traveler(sampleTravelerData)
-        traveler1 = travelerData.findSingleTraveler(1)
+        // travelerData = 
+        traveler1 = new Traveler(sampleTravelerData, 1)
     });
 
     it('should be a function', () => {
@@ -17,11 +17,11 @@ describe ("Traveler", function () {
     });
 
     it('should be an instance of Traveler', () => {
-        expect(travelerData).to.be.an.instanceOf(Traveler);
+        expect(traveler1).to.be.an.instanceOf(Traveler);
     });
     
     it('should return a single travelers info', () => {
-        expect(traveler1).to.deep.equal({
+        expect(traveler1.travelerData).to.deep.equal({
             "id": 1,
             "name": "Ham Leadbeater",
             "travelerType": "relaxer"
@@ -29,7 +29,7 @@ describe ("Traveler", function () {
     });
 
     it('should return a single users first name', () => {
-        const traveler1FirstName = travelerData.getTravelersFirstName(1)
+        const traveler1FirstName = traveler1.getTravelersFirstName()
         expect(traveler1FirstName).to.equal('Ham')
     });
 

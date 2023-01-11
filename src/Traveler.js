@@ -1,17 +1,16 @@
 class Traveler {
-    constructor(travelerData) {
-        this.travelerData = travelerData
+    constructor(travelerData, userId) {
+        this.travelerData = this.findSingleTraveler(travelerData, userId)
     }
-    findSingleTraveler(userId) {
-        return this.travelerData.find(traveler => {
+    findSingleTraveler(travelerData, userId) {
+        return travelerData.find(traveler => {
             return traveler.id === userId
-        })
-    }
-    getTravelersFirstName(userId) {
-        const traveler = this.findSingleTraveler(userId)
-        const name = traveler.name.split(' ')
+        });
+    };
+    getTravelersFirstName() {
+        const name = this.travelerData.name.split(' ')
         return name[0]
-    }
+    };
 }
 
 export default Traveler

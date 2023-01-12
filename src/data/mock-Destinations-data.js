@@ -126,6 +126,14 @@ const destinations = [
     "estimatedFlightCostPerPerson": 1200,
     "image": "https://images.unsplash.com/photo-1563656353898-febc9270a0f6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
     "alt": "landscape photo of a city skyline"
+    },
+    {
+    "id": 42,
+    "destination": "Santo Domingo, Dominican Republic",
+    "estimatedLodgingCostPerDay": 400,
+    "estimatedFlightCostPerPerson": 80,
+    "image": "https://images.unsplash.com/photo-1510541383520-4daa77a666cf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1782&q=80",
+    "alt": "aerial view of houses and high rise building"
     }
 ]
 

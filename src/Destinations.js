@@ -2,7 +2,7 @@ class Destination {
     constructor(destinationData, destinationId) {
         this.oneDestination = this.findADestination(destinationData, destinationId)
         this.id = destinationId
-        this.location = this.oneDestination.destination
+        this.destination = this.oneDestination.destination
         this.estimatedLodgingCostPerDay = this.oneDestination.estimatedLodgingCostPerDay
         this.estimatedFlightCostPerPerson = this.oneDestination.estimatedFlightCostPerPerson
         this.image = this.oneDestination.image

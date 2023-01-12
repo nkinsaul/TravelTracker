@@ -1,3 +1,74 @@
-body {
-  background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+body, html {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  font-family: 'Montserrat', sans-serif;
+  
 }
+
+body {
+  color: rgba(239, 210, 141);
+  background-color: rgba(0, 71, 119);
+}
+
+aside {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 75%;
+  width: 25%;
+}
+
+.aside-header {
+  font-size: 3em;
+}
+
+.aside-section-1, .aside-section-2, .aside-section-3 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 25%;
+  padding-left: 7%;
+}
+
+main {
+  height: 100%;
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+}
+
+.trips-container {
+  height: 100%;
+  width: 90%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2%;
+  padding: 0% 0% 5% 0%;
+}
+
+button {
+  width: 40%;
+}
+
+h1, h2, h3 {
+  margin: 0;
+}
+
+.main-header {
+  padding: 5% 0% 5% 0%;
+}
+
+article {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+img {
+  height: 100%;
+  width: 100%;
+  border: 1px solid black;
+}
+
+

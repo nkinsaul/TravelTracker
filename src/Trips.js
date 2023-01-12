@@ -1,24 +1,39 @@
-import chai from 'chai';
+import Destination from "./Destinations";
+
 class Trips {
-    constructor(tripData) {
-        this.allTrips = tripData
+    constructor(tripData, userId) {
+        this.usersTrips = this.getTripsForUser(tripData, userId)
     }
-    getTripsForUser(userId) {
-        return this.allTrips.filter(trip => {
+    getTripsForUser(tripData, userId) {
+        return tripData.filter(trip => {
             return trip.userID === userId
-        })
+        });
     }
-    findApprovedTrips(userId) {
-        const usersTrips = this.getTripsForUser(userId)
-        return usersTrips.filter(trip => {
+    findApprovedTrips() {
+        return this.usersTrips.filter(trip => {
             return trip.status === 'approved'
-        })
+        });
     }
-    findPendingTrips(userId) {
-        const usersTrips = this.getTripsForUser(userId)
-        return usersTrips.filter(trip => {
+    findPendingTrips() {
+        return this.usersTrips.filter(trip => {
             return trip.status === 'pending'
         });
+    }
+    findSingleTrip(tripId) {
+        return this.usersTrips.find(trip => {
+            return trip.id === tripId
+        })
+    }
+    findTripDestination(destinationData, destinationId) {
+        const destination = new Destination(destinationData, destinationId)
+        return destination.oneDestination
+    }
+    calculateTripCost(tripId, destinationData) {
+        const trip = this.findSingleTrip(tripId)
+        const destination = this.findTripDestination(destinationData, trip.destinationID)
+        const tripTotal = (destination.estimatedLodgingCostPerDay * trip.duration) + (destination.estimatedFlightCostPerPerson * trip.travelers)
+        const agentFee = tripTotal * .10
+        return tripTotal + agentFee
     }
 }
 

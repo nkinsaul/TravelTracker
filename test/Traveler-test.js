@@ -3,12 +3,11 @@ const expect = chai.expect;
 import Traveler from '../src/Traveler';
 import sampleTravelerData from '../src/data/mock-Traveler-data'
 
+
 describe ("Traveler", function () {
-    // let travelerData;
     let traveler1;
 
     beforeEach(function () {
-        // travelerData = 
         traveler1 = new Traveler(sampleTravelerData, 1)
     });
 
@@ -33,4 +32,5 @@ describe ("Traveler", function () {
         expect(traveler1FirstName).to.equal('Ham')
     });
 
+    
 })

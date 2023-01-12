@@ -1,3 +1,5 @@
+import Trips from "./Trips";
+
 class Traveler {
     constructor(travelerData, userId) {
         this.travelerData = this.findSingleTraveler(travelerData, userId)

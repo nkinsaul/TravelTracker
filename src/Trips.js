@@ -5,10 +5,19 @@ class Trips {
         this.usersTrips = this.getTripsForUser(tripData, userId)
     }
     getTripsForUser(tripData, userId) {
-        return tripData.filter(trip => {
+        const allTrips = tripData.filter(trip => {
             return trip.userID === userId
         });
+        const convertDate = allTrips.forEach(trip => {
+            trip.date = Date.parse(trip.date)
+        })
+        return allTrips.sort((b, a) => {
+            return a.date - b.date
+        })
     }
+    
+    //Above method will return trips in order from most recent trip to oldest trip.  Number representing the date will need to be parsed back into a more readable date format to be displayed
+
     findApprovedTrips() {
         return this.usersTrips.filter(trip => {
             return trip.status === 'approved'

@@ -17,6 +17,7 @@ import sampleTravelerData from './data/mock-Traveler-data';
 import trips from './data/mock-Trips-data';
 import destinations from './data/mock-Destinations-data';
 import Destination from './Destinations';
+import { fetchData } from './apiCalls';
 
 // query selectors
 
@@ -25,32 +26,48 @@ const tripsContainer = document.getElementById("tripsContainer")
 
 // event listeners 
 
-window.addEventListener('load', onLoad)
+// window.addEventListener('load', onLoad)
 
 // global variables
 
+let travelerData;
+let tripsData;
+let destinationData;
 let traveler;
 let travelersTrips;
 let travelersDestinations;
+let randomUserId;
 
 // functions
 
-function onLoad () {
-    displayUserWelcome();
-    getTripsAndDestinations();
-    displayDestinationImages();
+Promise.all([fetchData('travelers'), fetchData('trips'), fetchData('destinations')])
+    .then(data => {
+        travelerData = data[0].travelers
+        tripsData = data[1].trips
+        destinationData = data[2].destinations
+        console.log(destinationData)
+        onLoad(travelerData, tripsData, destinationData)
+    })
+
+function onLoad (travelerData, tripsData, destinationData) {
+    generateRandomUserId(1, 50);
+    displayUserWelcome(travelerData, randomUserId);
+    getTripsAndDestinations(tripsData, destinationData);
+    displayDestinationImages(tripsData, destinationData);
 };
 
-const displayUserWelcome = () => {
-    traveler = new Traveler(sampleTravelerData, 25);
+const displayUserWelcome = (travelerData, userId) => {
+    traveler = new Traveler(travelerData, userId);
+    console.log(traveler)
     const travelerFirstName = traveler.getTravelersFirstName();
     welcomeUser.innerText = `Welcome ${travelerFirstName}`
 };
 
-const getTripsAndDestinations = () => {
-    travelersTrips = traveler.getTrips(trips)
+const getTripsAndDestinations = (tripsData, destinationData) => {
+    travelersTrips = traveler.getTrips(tripsData)
+    console.log('travelers trips:', travelersTrips)
     travelersDestinations = travelersTrips.usersTrips.reduce((arr, trip) => {
-        arr.push(new Destination(destinations, trip.destinationID))
+        arr.push(new Destination(destinationData, trip.destinationID))
         return arr
     },[]);
 };
@@ -68,6 +85,10 @@ const displayDestinationImages = () => {
     })
 }
 
+
+const generateRandomUserId = (min, max) => {
+    randomUserId = Math.floor(Math.random() * (max - min) + 1)
+}
 
 
 

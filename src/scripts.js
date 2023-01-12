@@ -26,7 +26,6 @@ const tripsContainer = document.getElementById("tripsContainer")
 
 // event listeners 
 
-// window.addEventListener('load', onLoad)
 
 // global variables
 
@@ -48,6 +47,10 @@ Promise.all([fetchData('travelers'), fetchData('trips'), fetchData('destinations
         console.log(destinationData)
         onLoad(travelerData, tripsData, destinationData)
     })
+
+const generateRandomUserId = (min, max) => {
+    randomUserId = Math.floor(Math.random() * (max - min) + 1)
+}
 
 function onLoad (travelerData, tripsData, destinationData) {
     generateRandomUserId(1, 50);
@@ -86,9 +89,7 @@ const displayDestinationImages = () => {
 }
 
 
-const generateRandomUserId = (min, max) => {
-    randomUserId = Math.floor(Math.random() * (max - min) + 1)
-}
+
 
 
 

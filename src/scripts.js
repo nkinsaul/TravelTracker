@@ -16,10 +16,12 @@ import Traveler from './Traveler';
 import sampleTravelerData from './data/mock-Traveler-data';
 import trips from './data/mock-Trips-data';
 import destinations from './data/mock-Destinations-data';
+import Destination from './Destinations';
 
 // query selectors
 
 const welcomeUser = document.getElementById("asideHeader");
+const tripsContainer = document.getElementById("tripsContainer")
 
 // event listeners 
 
@@ -28,26 +30,44 @@ window.addEventListener('load', onLoad)
 // global variables
 
 let traveler;
+let travelersTrips;
+let travelersDestinations;
 
 // functions
 
 function onLoad () {
     displayUserWelcome();
-    displayTrips();
-}
+    getTripsAndDestinations();
+    displayDestinationImages();
+};
 
 const displayUserWelcome = () => {
     traveler = new Traveler(sampleTravelerData, 25);
     const travelerFirstName = traveler.getTravelersFirstName();
     welcomeUser.innerText = `Welcome ${travelerFirstName}`
+};
+
+const getTripsAndDestinations = () => {
+    travelersTrips = traveler.getTrips(trips)
+    travelersDestinations = travelersTrips.usersTrips.reduce((arr, trip) => {
+        arr.push(new Destination(destinations, trip.destinationID))
+        return arr
+    },[]);
+};
+
+const displayDestinationImages = () => {
+    travelersDestinations.forEach(destination => {
+        let trip = document.createElement('ARTICLE')
+        let img = document.createElement('img')
+        img.src = destination.image
+        let destName = document.createElement('CAPTION')
+        destName = destination.destination
+        tripsContainer.appendChild(trip)
+        trip.appendChild(img)
+        // trip.appendChild(destName)
+    })
 }
 
-const displayTrips = () => {
-    const travelersTrips = traveler.getTrips(trips)
-    const tripDestinationsIDs = travelersTrips.usersTrips.map(trip => {
-        return trip.destinationID
-    });
-}
 
 
 

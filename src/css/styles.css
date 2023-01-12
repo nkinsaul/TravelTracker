@@ -2,6 +2,13 @@ body, html {
   height: 100%;
   width: 100%;
   display: flex;
+  font-family: 'Montserrat', sans-serif;
+  
+}
+
+body {
+  color: rgba(239, 210, 141);
+  background-color: rgba(0, 71, 119);
 }
 
 aside {

@@ -61,10 +61,10 @@ const displayDestinationImages = () => {
         let img = document.createElement('img')
         img.src = destination.image
         let destName = document.createElement('CAPTION')
-        destName = destination.destination
+        destName.innerHTML = destination.destination
         tripsContainer.appendChild(trip)
         trip.appendChild(img)
-        // trip.appendChild(destName)
+        trip.appendChild(destName)
     })
 }
 

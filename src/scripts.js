@@ -26,7 +26,7 @@ const tripsContainer = document.getElementById("tripsContainer")
 
 // event listeners 
 
-// window.addEventListener('load', onLoad)
+
 
 // global variables
 
@@ -84,7 +84,6 @@ const displayDestinationImages = () => {
         trip.appendChild(destName)
     })
 }
-
 
 const generateRandomUserId = (min, max) => {
     randomUserId = Math.floor(Math.random() * (max - min) + 1)

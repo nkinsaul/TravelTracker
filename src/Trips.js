@@ -31,8 +31,9 @@ class Trips {
     calculateTripCost(tripId, destinationData) {
         const trip = this.findSingleTrip(tripId)
         const destination = this.findTripDestination(destinationData, trip.destinationID)
-
-        return (destination.estimatedLodgingCostPerDay * trip.duration) + (destination.estimatedFlightCostPerPerson * trip.travelers)
+        const tripTotal = (destination.estimatedLodgingCostPerDay * trip.duration) + (destination.estimatedFlightCostPerPerson * trip.travelers)
+        const agentFee = tripTotal * .10
+        return tripTotal + agentFee
     }
 }
 

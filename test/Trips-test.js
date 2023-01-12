@@ -144,10 +144,9 @@ describe ("Trips", function() {
     })
 
     it('should calculate a trips cost', () => {
-        console.log(tripsData)
         const tripCost = tripsData.calculateTripCost(138, destinations)
 
-        expect(tripCost).to.equal(3570)
+        expect(tripCost).to.equal(3927)
     })
 
 });

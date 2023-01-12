@@ -13,6 +13,9 @@ class Traveler {
         const name = this.travelerData.name.split(' ')
         return name[0]
     };
+    getTrips(tripData) {
+        return new Trips(tripData, this.travelerData.id)
+    }
 }
 
 export default Traveler

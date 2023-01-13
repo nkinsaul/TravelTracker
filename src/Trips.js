@@ -52,7 +52,9 @@ class Trips {
             return new Destination(destinationData, id)
         })
         const calculateTripCost = this.usersTrips.map((trip, index) => {
-            return (trip.duration * tripDestinations[index].estimatedLodgingCostPerDay) + (trip.travelers * tripDestinations[index].estimatedFlightCostPerPerson)
+            const tripTotal = (trip.duration * tripDestinations[index].estimatedLodgingCostPerDay) + (trip.travelers * tripDestinations[index].estimatedFlightCostPerPerson)
+            const agentFee = tripTotal * .10
+            return tripTotal + agentFee
         })
         const sumTripTotals = calculateTripCost.reduce((sum, cost) => {
             sum += cost

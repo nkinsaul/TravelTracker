@@ -36,8 +36,7 @@ const destinationInput = document.getElementById('destination');
 bookTripButton.addEventListener('click', function(event) {
     event.preventDefault();
     displayForm();
-    populateDestinationSelection(destinationData)
-    addTripData(1, randomUserId, destinationInput)
+    populateDestinationSelection(destinationData);
 })
 
 backToTripsButton.addEventListener('click', function(event) {
@@ -49,6 +48,12 @@ backToTripsButton.addEventListener('click', function(event) {
 
 form.addEventListener('submit', function(event){
     event.preventDefault();
+    let modifyDate = dateInput.value.replaceAll('-', '/')
+    let modifyDestination = destinationInput.value.split(' ')[0]
+    addTripData(newTripId, randomUserId, parseInt(modifyDestination), parseInt(numTravelersInput.value), modifyDate, parseInt(durationInput.value))
+    .then(fetchNewData())
+    clearForm();
+    setTimeout(() => fetchNewData(), 1000);
 })
 
 // global variables
@@ -60,6 +65,8 @@ let traveler;
 let travelersTrips;
 let travelersDestinations;
 let randomUserId;
+let newTripId;
+
 
 // functions
 
@@ -80,6 +87,7 @@ function onLoad (travelerData, tripsData, destinationData) {
     displayUserWelcome(travelerData, randomUserId);
     getTripsAndDestinations(tripsData, destinationData);
     displayDestinationImages(tripsData, destinationData);
+    generateTripID(tripsData);
 };
 
 const displayUserWelcome = (travelerData, userId) => {
@@ -129,6 +137,35 @@ const populateDestinationSelection = (destinationData) => {
     }); 
 };
 
+const generateTripID = (data) => {
+    const sortedTrips = data.sort((a, b) => {
+        return b.id - a.id
+    })
+    newTripId = sortedTrips[0].id + 1
+}
 
+const fetchNewData = () => {
+    Promise.all([fetchData('trips'), fetchData('travelers')])
+    .then(data => {
+        console.log(data)
+        tripsData = data[0].trips;
+        travelerData = data[1].travelers;
+        generateTripID(tripsData)
+    })
+}    
 
+const clearForm = () => {
+    dateInput.value = ''
+    durationInput.value = ''
+    numTravelersInput.value = ''
+    destinationInput.value = ''
+}
 
+const pleaseTryAgainError = () => {
+    let message = document.createElement('p')
+    message.innerText = 'Uh oh, there was a problem, please try again.'
+    form.prepend(message);
+    setTimeout(() => message.classList.add('hidden'), 3000)
+}
+
+export {pleaseTryAgainError}

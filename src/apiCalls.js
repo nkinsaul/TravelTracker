@@ -1,10 +1,12 @@
+import { pleaseTryAgainError } from "./scripts"
+
 const fetchData = (urlPath) => {
     return fetch(`http://localhost:3001/api/v1/${urlPath}`)
             .then(response => response.json())
 }
 
-const addTripData = (id, userID, destinationID, travelers, date, duration, status) => {
-    fetch('http://localhost:3001/api/v1/trips', {
+const addTripData = (id, userID, destinationID, travelers, date, duration) => {
+    return fetch('http://localhost:3001/api/v1/trips', {
         method: "POST",
         body: JSON.stringify({
             id: id,
@@ -13,25 +15,32 @@ const addTripData = (id, userID, destinationID, travelers, date, duration, statu
             travelers: travelers,
             date: date,
             duration: duration,
-            status: status,
+            status: 'pending',
             suggestedActivities: []
         }),
         headers: {
-            "Content-Type" : "application/json"
+            "Content-Type": "application/json"
         }
     })
     .then(response => {
+        console.log('response:', response)
         if(response.ok) {
             return response.json()
         } 
-        throw new Error('Something went wrong')
+        response.json()
+        .then(data => console.log(data))
+        pleaseTryAgainError()
+        throw new Error(data)
     })
     .catch((error) => {
         console.log(error)
-        throw new Error(error)
     })
 }
 
 export {fetchData};
 export {addTripData}
 
+
+
+//  .then(response => response.json())
+// .then(data => console.log(data))

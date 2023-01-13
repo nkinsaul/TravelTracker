@@ -107,6 +107,10 @@ form {
   display: flex;
   flex-direction: column;
   width: 50%;
-  height: 35%;
+  height: 50%;
   justify-content: space-evenly;
+}
+
+.form-button{
+  height: 10%;
 }

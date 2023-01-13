@@ -37,6 +37,11 @@ backToTripsButton.addEventListener('click', function(event) {
     event.preventDefault();
     tripsContainer.classList.remove('hidden')
     form.classList.add('hidden')
+    mainHeader.innerText = "Your Trips"
+});
+
+form.addEventListener('submit', function(event){
+    event.preventDefault();
 })
 
 // global variables

@@ -25,18 +25,19 @@
     </section>
   </aside>
   <main>
-    <h1 class="main-header" id="mainHeader">All Trips</h1>
+    <h1 class="main-header" id="mainHeader">Your Trips</h1>
     <section class="trips-container" id="tripsContainer"></section>
     <form class="form hidden" id="form">
-      <input type="date" name="date">
+      <input type="date" name="date" required>
       <label for="date">Date</label>
-      <input type="number" name="duration">
+      <input type="number" name="duration" required>
       <label for="duration">Duration</label> 
-      <input type="number" name="num-travelers">
+      <input type="number" name="num-travelers" required>
       <label for="num-travelers">Number of Travelers</label>
-      <input type="text" name="destination">
+      <input type="text" name="destination" required>
       <label for="destination">Destination</label>
-      <button id="backToTrips">Back to Trips</button>
+      <button class="form-button" type="submit" id="submitButton">Submit</button>
+      <button class="form-button" id="backToTrips">Back to Trips</button>
     </form>
   </main>
   

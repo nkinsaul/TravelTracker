@@ -28,13 +28,16 @@
     <h1 class="main-header" id="mainHeader">Your Trips</h1>
     <section class="trips-container" id="tripsContainer"></section>
     <form class="form hidden" id="form">
-      <input type="date" name="date" required>
+      <input id="date" type="date" name="date" required>
       <label for="date">Date</label>
-      <input type="number" name="duration" required>
+      <input id="duration" type="number" name="duration" required>
       <label for="duration">Duration</label> 
-      <input type="number" name="num-travelers" required>
+      <input id="numTravelers" type="number" name="num-travelers" required>
       <label for="num-travelers">Number of Travelers</label>
-      <input type="text" name="destination" required>
+      <select id="destination" type="text" name="destination" required>
+        <option>Rome, Italy</option>
+        <option>Paris, France</option>
+      </select> 
       <label for="destination">Destination</label>
       <button class="form-button" type="submit" id="submitButton">Submit</button>
       <button class="form-button" id="backToTrips">Back to Trips</button>

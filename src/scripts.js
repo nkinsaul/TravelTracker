@@ -14,7 +14,7 @@ console.log('This is the JavaScript entry file - your code begins here.');
 
 import Traveler from './Traveler';
 import Destination from './Destinations';
-import { fetchData } from './apiCalls';
+import { addTripData, fetchData } from './apiCalls';
 
 // query selectors
 
@@ -25,12 +25,18 @@ const bookTripButton = document.getElementById('bookTripButton');
 const mainHeader = document.getElementById('mainHeader');
 const form = document.getElementById('form');
 const backToTripsButton = document.getElementById('backToTrips')
+const dateInput = document.getElementById('date');
+const durationInput = document.getElementById('duration');
+const numTravelersInput = document.getElementById('numTravelers');
+const destinationInput = document.getElementById('destination');
+
 
 // event listeners 
 
 bookTripButton.addEventListener('click', function(event) {
     event.preventDefault();
     displayForm();
+    // addTripData(1, randomUserId, )
 })
 
 backToTripsButton.addEventListener('click', function(event) {

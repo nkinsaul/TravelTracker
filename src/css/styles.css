@@ -7,21 +7,24 @@ body, html {
 }
 
 body {
-  color: rgba(239, 210, 141);
+  color: #FFFFFF;
   background-color: rgba(0, 71, 119);
 }
 
 aside {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
-  height: 75%;
-  width: 25%;
-  padding-right: 5%;
+  justify-content: flex-start;
+  height: 150%;
+  width: 20%;
+  /* padding-right: 5%; */
+  background-color: rgba(0, 175, 181, .6);
 }
+
 
 .aside-header {
   font-size: 3em;
+  width: 90%;
 }
 
 .aside-section-1, .aside-section-2, .aside-section-3 {
@@ -32,11 +35,16 @@ aside {
   padding-left: 7%;
 }
 
+.aside-section-3 {
+  justify-content: flex-start;
+}
+
 main {
   height: 130%;
   width: 75%;
   display: flex;
   flex-direction: column;
+  padding: 0% 0% 0% 5%;
 }
 
 .trips-container {
@@ -50,7 +58,12 @@ main {
 }
 
 button {
-  width: 40%;
+  width: 50%;
+  height: 20%;
+  border: none;
+  border-radius: 15px;
+  background-color: rgba(163, 0, 0);
+  color: #FFFFFF
 }
 
 h1, h2, h3 {
@@ -73,4 +86,10 @@ img {
   border: 1px solid black;
 }
 
+.trips-total-spent {
+  font-size: 1.5em;
+}
 
+caption {
+  padding-top: 2%;
+}

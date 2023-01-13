@@ -60,9 +60,6 @@ class Trips {
             sum += cost
             return sum
         },0)
-        console.log('calculate trip cost:', calculateTripCost)
-        console.log('users trips:', this.usersTrips)
-        console.log('trip destinations:', tripDestinations)
         return sumTripTotals
     }
 }

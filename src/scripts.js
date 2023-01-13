@@ -59,7 +59,7 @@ function onLoad (travelerData, tripsData, destinationData) {
 const displayUserWelcome = (travelerData, userId) => {
     traveler = new Traveler(travelerData, userId);
     const travelerFirstName = traveler.getTravelersFirstName();
-    welcomeUser.innerText = `Welcome ${travelerFirstName}`
+    welcomeUser.innerText = `Hello, ${travelerFirstName}`
 };
 
 const getTripsAndDestinations = (tripsData, destinationData) => {

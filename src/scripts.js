@@ -36,8 +36,8 @@ const destinationInput = document.getElementById('destination');
 bookTripButton.addEventListener('click', function(event) {
     event.preventDefault();
     displayForm();
-    populateDestinationSelection()
-    // addTripData(1, randomUserId, )
+    populateDestinationSelection(destinationData)
+    addTripData(1, randomUserId, destinationInput)
 })
 
 backToTripsButton.addEventListener('click', function(event) {
@@ -121,13 +121,13 @@ const displayForm = () => {
     mainHeader.innerText = "Book a New Trip"
 }
 
-const populateDestinationSelection = () => {
+const populateDestinationSelection = (destinationData) => {
     destinationData.forEach(destination => {
         const option = document.createElement("option");
-        option.innerText = destination.destination
+        option.innerText = `${destination.id} - ${destination.destination}`
         destinationInput.appendChild(option);
-    }) 
-}
+    }); 
+};
 
 
 

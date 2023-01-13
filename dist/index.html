@@ -25,8 +25,18 @@
     </section>
   </aside>
   <main>
-    <h1 class="main-header">All Trips</h1>
+    <h1 class="main-header" id="mainHeader">All Trips</h1>
     <section class="trips-container" id="tripsContainer"></section>
+    <form class="form hidden" id="form">
+      <input type="date" name="date">
+      <label for="date">Date</label>
+      <input type="number" name="duration">
+      <label for="duration">Duration</label> 
+      <input type="number" name="num-travelers">
+      <label for="num-travelers">Number of Travelers</label>
+      <input type="text" name="destination">
+      <label for="destination">Destination</label>
+    </form>
   </main>
   
   <script src="bundle.js"></script>

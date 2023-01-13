@@ -22,10 +22,15 @@ const welcomeUser = document.getElementById('asideHeader');
 const tripsContainer = document.getElementById('tripsContainer');
 const tripsTotalSpent = document.getElementById('tripsTotalSpent');
 const bookTripButton = document.getElementById('bookTripButton');
+const mainHeader = document.getElementById('mainHeader');
+const form = document.getElementById('form');
 
 // event listeners 
 
-bookTripButton.addEventListener('click', displayForm())
+bookTripButton.addEventListener('click', function(event) {
+    event.preventDefault();
+    displayForm();
+})
 
 // global variables
 
@@ -92,7 +97,10 @@ const displayTripTotal = (travelersTrips, destinationData) => {
 }
 
 const displayForm = () => {
-    
+    console.log('hello')
+    tripsContainer.style.display = "none";
+    form.classList.remove('hidden')
+    mainHeader.innerText = "Book a New Trip"
 }
 
 

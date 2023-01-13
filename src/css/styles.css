@@ -98,3 +98,7 @@ img {
 caption {
   padding-top: 2%;
 }
+
+.hidden {
+  display: none;
+}

@@ -44,6 +44,25 @@ class Trips {
         const agentFee = tripTotal * .10
         return tripTotal + agentFee
     }
+    findTotalTripsCost(destinationData) {
+        const tripDestinationIDS = this.usersTrips.map(trip => {
+            return trip.destinationID
+        })
+        const tripDestinations = tripDestinationIDS.map(id => {
+            return new Destination(destinationData, id)
+        })
+        const calculateTripCost = this.usersTrips.map((trip, index) => {
+            return (trip.duration * tripDestinations[index].estimatedLodgingCostPerDay) + (trip.travelers * tripDestinations[index].estimatedFlightCostPerPerson)
+        })
+        const sumTripTotals = calculateTripCost.reduce((sum, cost) => {
+            sum += cost
+            return sum
+        },0)
+        console.log('calculate trip cost:', calculateTripCost)
+        console.log('users trips:', this.usersTrips)
+        console.log('trip destinations:', tripDestinations)
+        return sumTripTotals
+    }
 }
 
 export default Trips

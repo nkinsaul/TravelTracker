@@ -17,6 +17,7 @@ aside {
   justify-content: space-evenly;
   height: 75%;
   width: 25%;
+  padding-right: 5%;
 }
 
 .aside-header {
@@ -32,7 +33,7 @@ aside {
 }
 
 main {
-  height: 150%;
+  height: 130%;
   width: 75%;
   display: flex;
   flex-direction: column;
@@ -44,8 +45,6 @@ main {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  /* grid-auto-columns: 10%; */
-  /* grid-auto-rows: 40%; */
   gap: 2%;
   padding: 0% 0% 5% 0%;
 }

@@ -21,9 +21,11 @@ import { fetchData } from './apiCalls';
 const welcomeUser = document.getElementById('asideHeader');
 const tripsContainer = document.getElementById('tripsContainer');
 const tripsTotalSpent = document.getElementById('tripsTotalSpent');
+const bookTripButton = document.getElementById('bookTripButton');
 
 // event listeners 
 
+bookTripButton.addEventListener('click', displayForm())
 
 // global variables
 
@@ -89,7 +91,9 @@ const displayTripTotal = (travelersTrips, destinationData) => {
     tripsTotalSpent.innerHTML = totalTripsCost;
 }
 
-
+const displayForm = () => {
+    
+}
 
 
 

@@ -66,6 +66,11 @@ button {
   color: #FFFFFF
 }
 
+button:hover {
+  background-color: rgb(105, 0, 0);
+  transition: .1s;
+}
+
 h1, h2, h3 {
   margin: 0;
 }

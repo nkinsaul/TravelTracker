@@ -63,7 +63,8 @@ button {
   border: none;
   border-radius: 15px;
   background-color: rgba(163, 0, 0);
-  color: #FFFFFF
+  color: #FFFFFF;
+  box-shadow: 10px 10px 30px rgb(115 0 0);
 }
 
 button:hover {
@@ -111,6 +112,22 @@ form {
   justify-content: space-evenly;
 }
 
-.form-button{
+.form-button {
   height: 10%;
+  
+}
+
+img {
+  box-shadow: 10px 20px 15px rgb(0, 41, 68);;
+}
+
+.error-message {
+  background-color: rgb(163, 0, 0);
+  text-align: center;
+  text-justify: inter-cluster;
+  font-size: 1.5em;
+  height: 10%;
+  width: 50%;
+  border-radius: 10px;
+  padding: 3% 0% 3% 0% ;
 }

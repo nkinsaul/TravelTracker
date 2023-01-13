@@ -29,6 +29,7 @@ const dateInput = document.getElementById('date');
 const durationInput = document.getElementById('duration');
 const numTravelersInput = document.getElementById('numTravelers');
 const destinationInput = document.getElementById('destination');
+const errorMessage = document.getElementById('errorMessage')
 
 
 // event listeners 
@@ -50,10 +51,7 @@ form.addEventListener('submit', function(event){
     event.preventDefault();
     let modifyDate = dateInput.value.replaceAll('-', '/')
     let modifyDestination = destinationInput.value.split(' ')[0]
-    addTripData(newTripId, randomUserId, parseInt(modifyDestination), parseInt(numTravelersInput.value), modifyDate, parseInt(durationInput.value))
-    .then(fetchNewData())
-    clearForm();
-    setTimeout(() => fetchNewData(), 1000);
+    checkInput(newTripId, randomUserId, parseInt(modifyDestination), parseInt(numTravelersInput.value), modifyDate, parseInt(durationInput.value))
 })
 
 // global variables
@@ -166,6 +164,28 @@ const pleaseTryAgainError = () => {
     message.innerText = 'Uh oh, there was a problem, please try again.'
     form.prepend(message);
     setTimeout(() => message.classList.add('hidden'), 3000)
+}
+
+const checkInput = (id, userID, destinationID, travelers, date, duration) => {
+    if (durationInput.value > 30) {
+        errorMessage.innerText = 'For bookings over 30 days please call 1-888-BOOK-NOW'
+        errorMessage.classList.remove('hidden')
+        setTimeout(() => clearForm(), 3000);
+        setTimeout(() => errorMessage.classList.add('hidden'), 3000)
+    } else if (numTravelersInput.value > 20) {
+        message.innerText = 'For bookings with large parties please call 1-888-BOOK-NOW'
+        errorMessage.classList.remove('hidden')
+        setTimeout(() => clearForm(), 3000);
+        setTimeout(() => errorMessage.classList.add('hidden'), 3000)
+    } else {
+        addTripData(id, userID, destinationID, travelers, date, duration)
+        .then(fetchNewData())
+        clearForm();
+        setTimeout(() => fetchNewData(), 1000);
+        errorMessage.innerText = 'Booked!'
+        errorMessage.classList.remove('hidden')
+        setTimeout(() => errorMessage.classList.add('hidden'), 3000)
+    }
 }
 
 export {pleaseTryAgainError}

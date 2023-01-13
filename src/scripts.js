@@ -13,16 +13,14 @@ console.log('This is the JavaScript entry file - your code begins here.');
 // imports 
 
 import Traveler from './Traveler';
-import sampleTravelerData from './data/mock-Traveler-data';
-import trips from './data/mock-Trips-data';
-import destinations from './data/mock-Destinations-data';
 import Destination from './Destinations';
 import { fetchData } from './apiCalls';
 
 // query selectors
 
-const welcomeUser = document.getElementById("asideHeader");
-const tripsContainer = document.getElementById("tripsContainer")
+const welcomeUser = document.getElementById('asideHeader');
+const tripsContainer = document.getElementById('tripsContainer');
+const tripsTotalSpent = document.getElementById('tripsTotalSpent');
 
 // event listeners 
 
@@ -44,7 +42,6 @@ Promise.all([fetchData('travelers'), fetchData('trips'), fetchData('destinations
         travelerData = data[0].travelers
         tripsData = data[1].trips
         destinationData = data[2].destinations
-        console.log(destinationData)
         onLoad(travelerData, tripsData, destinationData)
     })
 
@@ -61,14 +58,13 @@ function onLoad (travelerData, tripsData, destinationData) {
 
 const displayUserWelcome = (travelerData, userId) => {
     traveler = new Traveler(travelerData, userId);
-    console.log(traveler)
     const travelerFirstName = traveler.getTravelersFirstName();
     welcomeUser.innerText = `Welcome ${travelerFirstName}`
 };
 
 const getTripsAndDestinations = (tripsData, destinationData) => {
     travelersTrips = traveler.getTrips(tripsData)
-    console.log('travelers trips:', travelersTrips)
+    displayTripTotal(travelersTrips, destinationData)
     travelersDestinations = travelersTrips.usersTrips.reduce((arr, trip) => {
         arr.push(new Destination(destinationData, trip.destinationID))
         return arr
@@ -85,8 +81,14 @@ const displayDestinationImages = () => {
         tripsContainer.appendChild(trip)
         trip.appendChild(img)
         trip.appendChild(destName)
-    })
+    });
 }
+
+const displayTripTotal = (travelersTrips, destinationData) => {
+    const totalTripsCost = travelersTrips.findTotalTripsCost(destinationData)
+    tripsTotalSpent.innerHTML = totalTripsCost;
+}
+
 
 
 

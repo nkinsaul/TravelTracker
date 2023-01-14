@@ -1,5 +1,6 @@
 import Destination from "./Destinations";
 import dayjs from "dayjs";
+import trips from "./data/mock-Trips-data";
 
 class Trips {
     constructor(tripData, userId) {
@@ -38,6 +39,11 @@ class Trips {
     findTripDestination(destinationData, destinationId) {
         const destination = new Destination(destinationData, destinationId)
         return destination.oneDestination
+    }
+    findTripsFromThisYear() {
+        return this.usersTrips.filter(trip => {
+            return dayjs().year() === parseInt(trip.date.slice(0, 4))
+        })
     }
     calculateTripCost(tripId, destinationData) {
         const trip = this.findSingleTrip(tripId)

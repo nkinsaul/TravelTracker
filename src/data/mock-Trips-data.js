@@ -149,6 +149,16 @@
     "duration": 9,
     "status": "approved",
     "suggestedActivities": []
+    },
+    {
+    "id": 190,
+    "userID": 25,
+    "destinationID": 28,
+    "travelers": 3,
+    "date": "2023/01/03",
+    "duration": 9,
+    "status": "approved",
+    "suggestedActivities": []
     }
     ]
 

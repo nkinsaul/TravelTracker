@@ -31,6 +31,7 @@ const durationInput = document.getElementById('duration');
 const numTravelersInput = document.getElementById('numTravelers');
 const destinationInput = document.getElementById('destination');
 const errorMessage = document.getElementById('errorMessage')
+const pendingButton = document.getElementById('pendingTripsButton')
 
 
 // event listeners 
@@ -53,6 +54,25 @@ form.addEventListener('submit', function(event){
     let modifyDate = dateInput.value.replaceAll('-', '/')
     let modifyDestination = destinationInput.value.split(' ')[0]
     checkInput(newTripId, randomUserId, parseInt(modifyDestination), parseInt(numTravelersInput.value), modifyDate, parseInt(durationInput.value), destinationData)
+})
+
+pendingButton.addEventListener('click', function(event) {
+    const pendingTrips = travelersTrips.findPendingTrips()
+    console.log('pending trips:', pendingTrips)
+    const destinations = pendingTrips.reduce((arr, trip) => {
+        arr.push(new Destination(destinationData, trip.destinationID))
+        return arr
+    },[])
+    destinations.forEach(destination => {
+        let trip = document.createElement('ARTICLE')
+        let img = document.createElement('img')
+        img.src = destination.image
+        let destName = document.createElement('CAPTION')
+        destName.innerHTML = destination.destination
+        tripsContainer.appendChild(trip)
+        trip.appendChild(img)
+        trip.appendChild(destName)
+    });
 })
 
 // global variables

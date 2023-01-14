@@ -8,7 +8,7 @@ import './css/styles.css';
 import './images/turing-logo.png'
 
 
-console.log('This is the JavaScript entry file - your code begins here.');
+// console.log('This is the JavaScript entry file - your code begins here.');
 
 // imports 
 
@@ -33,6 +33,7 @@ const destinationInput = document.getElementById('destination');
 const errorMessage = document.getElementById('errorMessage')
 const pendingButton = document.getElementById('pendingTripsButton')
 const allTripsButton = document.getElementById('seeAllTripsButton')
+const pastTripsButton = document.getElementById('pastTripsButton')
 
 
 // event listeners 
@@ -64,6 +65,10 @@ pendingButton.addEventListener('click', function(event) {
 allTripsButton.addEventListener('click', function(event) {
     displayDestinationImages(event)
 })
+
+pastTripsButton.addEventListener('click', function(event) {
+    displayPastTrips(event)
+});
 
 // global variables
 
@@ -194,9 +199,9 @@ const checkInput = (id, userID, destinationID, travelers, date, duration, destin
         .then(fetchNewData())
         clearForm();
         setTimeout(() => fetchNewData(), 1000);
-        errorMessage.innerText = 'Booked!'
+        errorMessage.innerText = 'Please wait while we calculate your trip cost...'
         errorMessage.classList.remove('hidden')
-        setTimeout(() => errorMessage.classList.add('hidden'), 3000)
+        // setTimeout(() => errorMessage.classList.add('hidden'), 3000)
         setTimeout(() => getTripCostEstimate(id, destinationData, tripsData), 3000);
     }
 }
@@ -204,6 +209,7 @@ const checkInput = (id, userID, destinationID, travelers, date, duration, destin
 const getTripCostEstimate = (tripId, destinationData, tripsData) => {
     travelersTrips = traveler.getTrips(tripsData);
     const tripEstimate = travelersTrips.calculateTripCost(tripId, destinationData)
+    errorMessage.innerText = `Booked! Your estimated trip cost is ${tripEstimate}`
     console.log(tripEstimate)
 }
 
@@ -227,8 +233,28 @@ const displayPendingTrips = () => {
 }
 
 const displayPastTrips = () => {
-    
+    tripsContainer.innerHTML = ''
+    const pastTrips = travelersTrips.findPastTrips()
+    const destinations = pastTrips.reduce((arr, trip) => {
+        arr.push(new Destination(destinationData, trip.destinationID))
+        return arr
+    },[])
+    destinations.forEach(destination => {
+        let trip = document.createElement('ARTICLE')
+        let img = document.createElement('img')
+        img.src = destination.image
+        let destName = document.createElement('CAPTION')
+        destName.innerHTML = destination.destination
+        tripsContainer.appendChild(trip)
+        trip.appendChild(img)
+        trip.appendChild(destName)
+    })
 }
+
+// const showTripEstimate = (tripId, destinationData) => {
+//     const tripCost = travelersTrips.calculateTripCost(tripId, destinationData)
+//     console.oog(tripCost);
+// }
 
 
 export {pleaseTryAgainError}

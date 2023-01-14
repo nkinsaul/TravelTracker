@@ -32,6 +32,7 @@ const numTravelersInput = document.getElementById('numTravelers');
 const destinationInput = document.getElementById('destination');
 const errorMessage = document.getElementById('errorMessage')
 const pendingButton = document.getElementById('pendingTripsButton')
+const allTripsButton = document.getElementById('seeAllTripsButton')
 
 
 // event listeners 
@@ -57,22 +58,11 @@ form.addEventListener('submit', function(event){
 })
 
 pendingButton.addEventListener('click', function(event) {
-    tripsContainer.innerHTML = ''
-    const pendingTrips = travelersTrips.findPendingTrips()
-    const destinations = pendingTrips.reduce((arr, trip) => {
-        arr.push(new Destination(destinationData, trip.destinationID))
-        return arr
-    },[])
-    destinations.forEach(destination => {
-        let trip = document.createElement('ARTICLE')
-        let img = document.createElement('img')
-        img.src = destination.image
-        let destName = document.createElement('CAPTION')
-        destName.innerHTML = destination.destination
-        tripsContainer.appendChild(trip)
-        trip.appendChild(img)
-        trip.appendChild(destName)
-    });
+    displayPendingTrips(event);
+}) 
+
+allTripsButton.addEventListener('click', function(event) {
+    displayDestinationImages(event)
 })
 
 // global variables
@@ -215,6 +205,29 @@ const getTripCostEstimate = (tripId, destinationData, tripsData) => {
     travelersTrips = traveler.getTrips(tripsData);
     const tripEstimate = travelersTrips.calculateTripCost(tripId, destinationData)
     console.log(tripEstimate)
+}
+
+const displayPendingTrips = () => {
+    tripsContainer.innerHTML = ''
+    const pendingTrips = travelersTrips.findPendingTrips()
+    const destinations = pendingTrips.reduce((arr, trip) => {
+        arr.push(new Destination(destinationData, trip.destinationID))
+        return arr
+    },[])
+    destinations.forEach(destination => {
+        let trip = document.createElement('ARTICLE')
+        let img = document.createElement('img')
+        img.src = destination.image
+        let destName = document.createElement('CAPTION')
+        destName.innerHTML = destination.destination
+        tripsContainer.appendChild(trip)
+        trip.appendChild(img)
+        trip.appendChild(destName)
+    })
+}
+
+const displayPastTrips = () => {
+    
 }
 
 

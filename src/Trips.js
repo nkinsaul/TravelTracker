@@ -71,7 +71,17 @@ class Trips {
         },0)
         return sumTripTotals
     }
-
+    findPastTrips () {
+        const today = new Date()
+        const convertDates = this.usersTrips.filter(trip => {
+            trip.date = new Date(trip.date)
+            return trip.date < today
+        })
+        convertDates.forEach(trip => {
+            trip.date =  dayjs(trip.date).format('YYYY/MM/DD')
+        })
+        return convertDates
+    }
 }
 
 export default Trips

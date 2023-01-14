@@ -13,6 +13,11 @@ class Destination {
             return destination.id === destinationId
         })
     }
+    estimateTripCost(duration, travelers) {
+        const tripCost = (this.estimatedLodgingCostPerDay * duration) + (this.estimatedFlightCostPerPerson * travelers)
+        const agentFee = tripCost * .1
+        return tripCost + agentFee
+    }
 }
 
 export default Destination

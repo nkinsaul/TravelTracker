@@ -124,13 +124,12 @@ img {
 
 .error-message {
   background-color: rgb(163, 0, 0);
-  text-align: center;
-  text-justify: inter-cluster;
-  font-size: 1.5em;
-  height: 10%;
-  width: 50%;
-  border-radius: 10px;
-  padding: 3% 0% 3% 0% ;
+    text-align: center;
+    font-size: 1.3em;
+    height: 10%;
+    width: 101%;
+    border-radius: 10px;
+    padding: 7% 0% 0% 0%;
 }
 
 input, select {

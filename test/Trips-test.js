@@ -32,7 +32,7 @@ describe ("Trips", function() {
             "userID": 25,
             "destinationID": 28,
             "travelers": 3,
-            "date": "2023/01/03",
+            "date": "2023/02/03",
             "duration": 9,
             "status": "approved",
             "suggestedActivities": []
@@ -142,7 +142,7 @@ describe ("Trips", function() {
             "userID": 25,
             "destinationID": 28,
             "travelers": 3,
-            "date": "2023/01/03",
+            "date": "2023/02/03",
             "duration": 9,
             "status": "approved",
             "suggestedActivities": []
@@ -153,6 +153,51 @@ describe ("Trips", function() {
         const thisYearsTripCost = tripsData.findTotalTripsCost(destinations)
 
         expect(thisYearsTripCost).to.equal(3663);
+    })
+
+    it('should find past trips', () => {
+        const pastTrips = tripsData.findPastTrips()
+
+        expect(pastTrips).to.deep.equal([{
+            id: 138,
+            userID: 25,
+            destinationID: 22,
+            travelers: 3,
+            date: '2020/10/29',
+            duration: 18,
+            status: 'pending',
+            suggestedActivities: []
+          },
+          {
+            id: 159,
+            userID: 25,
+            destinationID: 42,
+            travelers: 6,
+            date: '2020/07/24',
+            duration: 17,
+            status: 'approved',
+            suggestedActivities: []
+          },
+          {
+            id: 26,
+            userID: 25,
+            destinationID: 15,
+            travelers: 3,
+            date: '2019/12/10',
+            duration: 9,
+            status: 'approved',
+            suggestedActivities: []
+          },
+          {
+            id: 189,
+            userID: 25,
+            destinationID: 15,
+            travelers: 4,
+            date: '2019/12/01',
+            duration: 10,
+            status: 'approved',
+            suggestedActivities: []
+          }])
     })
 
 });

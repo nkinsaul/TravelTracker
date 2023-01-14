@@ -43,5 +43,10 @@ describe('Destinations', function() {
         expect(newDestination.alt).to.equal("colorful buildings near the water with docked boats")
     })
 
-
+    it('should calculate an estimated trip cost', () => {
+        const tripCost = newDestination.estimateTripCost(10, 3)
+            400 + 2700
+            3100
+        expect(tripCost).to.equal(3410)
+    })
 })

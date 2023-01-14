@@ -8,7 +8,7 @@ import './css/styles.css';
 import './images/turing-logo.png'
 
 
-console.log('This is the JavaScript entry file - your code begins here.');
+// console.log('This is the JavaScript entry file - your code begins here.');
 
 // imports 
 
@@ -32,6 +32,9 @@ const numTravelersInput = document.getElementById('numTravelers');
 const destinationInput = document.getElementById('destination');
 const errorMessage = document.getElementById('errorMessage')
 const pendingButton = document.getElementById('pendingTripsButton')
+const allTripsButton = document.getElementById('seeAllTripsButton')
+const pastTripsButton = document.getElementById('pastTripsButton')
+const tripEstimateButton = document.getElementById('tripEstimateButton')
 
 
 // event listeners 
@@ -53,27 +56,28 @@ form.addEventListener('submit', function(event){
     event.preventDefault();
     let modifyDate = dateInput.value.replaceAll('-', '/')
     let modifyDestination = destinationInput.value.split(' ')[0]
-    checkInput(newTripId, randomUserId, parseInt(modifyDestination), parseInt(numTravelersInput.value), modifyDate, parseInt(durationInput.value), destinationData)
+    checkInputSubmit(newTripId, randomUserId, parseInt(modifyDestination), parseInt(numTravelersInput.value), modifyDate, parseInt(durationInput.value), destinationData)
 })
 
 pendingButton.addEventListener('click', function(event) {
-    const pendingTrips = travelersTrips.findPendingTrips()
-    console.log('pending trips:', pendingTrips)
-    const destinations = pendingTrips.reduce((arr, trip) => {
-        arr.push(new Destination(destinationData, trip.destinationID))
-        return arr
-    },[])
-    destinations.forEach(destination => {
-        let trip = document.createElement('ARTICLE')
-        let img = document.createElement('img')
-        img.src = destination.image
-        let destName = document.createElement('CAPTION')
-        destName.innerHTML = destination.destination
-        tripsContainer.appendChild(trip)
-        trip.appendChild(img)
-        trip.appendChild(destName)
-    });
+    displayPendingTrips(event);
+}) 
+
+allTripsButton.addEventListener('click', function(event) {
+    displayDestinationImages(event)
 })
+
+pastTripsButton.addEventListener('click', function(event) {
+    displayPastTrips(event)
+});
+
+tripEstimateButton.addEventListener('click', function(event) {
+    event.preventDefault()
+    let modifyDestination = destinationInput.value.split(' ')[0]
+    checkInputEstimate(destinationData, parseInt(modifyDestination), parseInt(durationInput.value), parseInt(numTravelersInput.value))
+})
+
+
 
 // global variables
 
@@ -125,6 +129,7 @@ const getTripsAndDestinations = (tripsData, destinationData) => {
 };
 
 const displayDestinationImages = () => {
+    tripsContainer.innerHTML = ''
     travelersDestinations.forEach(destination => {
         let trip = document.createElement('ARTICLE')
         let img = document.createElement('img')
@@ -166,10 +171,10 @@ const generateTripID = (data) => {
 const fetchNewData = () => {
     Promise.all([fetchData('trips'), fetchData('travelers')])
     .then(data => {
-        console.log(data)
         tripsData = data[0].trips;
         travelerData = data[1].travelers;
         generateTripID(tripsData)
+        getTripsAndDestinations(tripsData, destinationData);
     })
 }    
 
@@ -187,7 +192,7 @@ const pleaseTryAgainError = () => {
     setTimeout(() => message.classList.add('hidden'), 3000)
 }
 
-const checkInput = (id, userID, destinationID, travelers, date, duration, destinationData) => {
+const checkInputSubmit = (id, userID, destinationID, travelers, date, duration, destinationData) => {
     if (durationInput.value > 30) {
         errorMessage.innerText = 'For bookings over 30 days please call 1-888-BOOK-NOW'
         errorMessage.classList.remove('hidden')
@@ -206,14 +211,69 @@ const checkInput = (id, userID, destinationID, travelers, date, duration, destin
         errorMessage.innerText = 'Booked!'
         errorMessage.classList.remove('hidden')
         setTimeout(() => errorMessage.classList.add('hidden'), 3000)
-        setTimeout(() => getTripCostEstimate(id, destinationData, tripsData), 3000);
     }
 }
 
-const getTripCostEstimate = (tripId, destinationData, tripsData) => {
-    travelersTrips = traveler.getTrips(tripsData);
-    const tripEstimate = travelersTrips.calculateTripCost(tripId, destinationData)
-    console.log(tripEstimate)
+const displayPendingTrips = () => {
+    tripsContainer.innerHTML = ''
+    const pendingTrips = travelersTrips.findPendingTrips()
+    const destinations = pendingTrips.reduce((arr, trip) => {
+        arr.push(new Destination(destinationData, trip.destinationID))
+        return arr
+    },[])
+    destinations.forEach(destination => {
+        let trip = document.createElement('ARTICLE')
+        let img = document.createElement('img')
+        img.src = destination.image
+        let destName = document.createElement('CAPTION')
+        destName.innerHTML = destination.destination
+        tripsContainer.appendChild(trip)
+        trip.appendChild(img)
+        trip.appendChild(destName)
+    })
+}
+
+const displayPastTrips = () => {
+    tripsContainer.innerHTML = ''
+    const pastTrips = travelersTrips.findPastTrips()
+    const destinations = pastTrips.reduce((arr, trip) => {
+        arr.push(new Destination(destinationData, trip.destinationID))
+        return arr
+    },[])
+    destinations.forEach(destination => {
+        let trip = document.createElement('ARTICLE')
+        let img = document.createElement('img')
+        img.src = destination.image
+        let destName = document.createElement('CAPTION')
+        destName.innerHTML = destination.destination
+        tripsContainer.appendChild(trip)
+        trip.appendChild(img)
+        trip.appendChild(destName)
+    })
+}
+
+const showTripEstimate = (destinationData, destinationId, duration, travelers) => {
+    const newDestination = new Destination(destinationData, destinationId)
+    const tripCost = newDestination.estimateTripCost(duration, travelers)
+    console.log(tripCost);
+    errorMessage.innerText = `Your estimated trip cost is $${tripCost}. Click submit to book your trip!`
+    errorMessage.classList.remove('hidden')
+}
+
+const checkInputEstimate = (destinationData, destinationId, duration, travelers) => {
+    if (duration > 30) {
+        errorMessage.innerText = 'For bookings over 30 days please call 1-888-BOOK-NOW'
+        errorMessage.classList.remove('hidden')
+        setTimeout(() => clearForm(), 3000);
+        setTimeout(() => errorMessage.classList.add('hidden'), 3000)
+    } else if (travelers > 20) {
+        message.innerText = 'For bookings with large parties please call 1-888-BOOK-NOW'
+        errorMessage.classList.remove('hidden')
+        setTimeout(() => clearForm(), 3000);
+        setTimeout(() => errorMessage.classList.add('hidden'), 3000)
+    } else {
+        showTripEstimate(destinationData, destinationId, duration, travelers)
+    }
 }
 
 

@@ -57,8 +57,8 @@ form.addEventListener('submit', function(event){
 })
 
 pendingButton.addEventListener('click', function(event) {
+    tripsContainer.innerHTML = ''
     const pendingTrips = travelersTrips.findPendingTrips()
-    console.log('pending trips:', pendingTrips)
     const destinations = pendingTrips.reduce((arr, trip) => {
         arr.push(new Destination(destinationData, trip.destinationID))
         return arr
@@ -125,6 +125,7 @@ const getTripsAndDestinations = (tripsData, destinationData) => {
 };
 
 const displayDestinationImages = () => {
+    tripsContainer.innerHTML = ''
     travelersDestinations.forEach(destination => {
         let trip = document.createElement('ARTICLE')
         let img = document.createElement('img')

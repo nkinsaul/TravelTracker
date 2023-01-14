@@ -64,7 +64,7 @@ button {
   border-radius: 15px;
   background-color: rgba(163, 0, 0);
   color: #FFFFFF;
-  box-shadow: 10px 10px 30px rgb(115 0 0);
+  box-shadow: 5px 5px 20px rgb(115 0 0);
 }
 
 button:hover {
@@ -119,6 +119,7 @@ form {
 
 img {
   box-shadow: 10px 20px 15px rgb(0, 41, 68);;
+  border: none;
 }
 
 .error-message {
@@ -130,4 +131,8 @@ img {
   width: 50%;
   border-radius: 10px;
   padding: 3% 0% 3% 0% ;
+}
+
+input, select {
+  height: 5%;
 }

@@ -15,6 +15,7 @@ console.log('This is the JavaScript entry file - your code begins here.');
 import Traveler from './Traveler';
 import Destination from './Destinations';
 import { addTripData, fetchData } from './apiCalls';
+import dayjs from 'dayjs';
 
 // query selectors
 
@@ -51,7 +52,7 @@ form.addEventListener('submit', function(event){
     event.preventDefault();
     let modifyDate = dateInput.value.replaceAll('-', '/')
     let modifyDestination = destinationInput.value.split(' ')[0]
-    checkInput(newTripId, randomUserId, parseInt(modifyDestination), parseInt(numTravelersInput.value), modifyDate, parseInt(durationInput.value))
+    checkInput(newTripId, randomUserId, parseInt(modifyDestination), parseInt(numTravelersInput.value), modifyDate, parseInt(durationInput.value), destinationData)
 })
 
 // global variables
@@ -166,7 +167,7 @@ const pleaseTryAgainError = () => {
     setTimeout(() => message.classList.add('hidden'), 3000)
 }
 
-const checkInput = (id, userID, destinationID, travelers, date, duration) => {
+const checkInput = (id, userID, destinationID, travelers, date, duration, destinationData) => {
     if (durationInput.value > 30) {
         errorMessage.innerText = 'For bookings over 30 days please call 1-888-BOOK-NOW'
         errorMessage.classList.remove('hidden')
@@ -185,7 +186,15 @@ const checkInput = (id, userID, destinationID, travelers, date, duration) => {
         errorMessage.innerText = 'Booked!'
         errorMessage.classList.remove('hidden')
         setTimeout(() => errorMessage.classList.add('hidden'), 3000)
+        setTimeout(() => getTripCostEstimate(id, destinationData, tripsData), 3000);
     }
 }
+
+const getTripCostEstimate = (tripId, destinationData, tripsData) => {
+    travelersTrips = traveler.getTrips(tripsData);
+    const tripEstimate = travelersTrips.calculateTripCost(tripId, destinationData)
+    console.log(tripEstimate)
+}
+
 
 export {pleaseTryAgainError}

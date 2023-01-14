@@ -1,4 +1,5 @@
 import Destination from "./Destinations";
+import dayjs from "dayjs";
 
 class Trips {
     constructor(tripData, userId) {
@@ -11,13 +12,14 @@ class Trips {
         const convertDate = allTrips.forEach(trip => {
             trip.date = Date.parse(trip.date)
         })
-        return allTrips.sort((b, a) => {
-            return a.date - b.date
+        const sortedTrips = allTrips.sort((a, b) => {
+            return b.date - a.date
         })
+        sortedTrips.forEach(trip => {
+            trip.date =  dayjs(trip.date).format('YYYY/MM/DD')
+        })
+        return sortedTrips
     }
-    
-    //Above method will return trips in order from most recent trip to oldest trip.  Number representing the date will need to be parsed back into a more readable date format to be displayed
-
     findApprovedTrips() {
         return this.usersTrips.filter(trip => {
             return trip.status === 'approved'
@@ -62,6 +64,7 @@ class Trips {
         },0)
         return sumTripTotals
     }
+
 }
 
 export default Trips

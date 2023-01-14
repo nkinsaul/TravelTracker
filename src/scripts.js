@@ -50,6 +50,10 @@ backToTripsButton.addEventListener('click', function(event) {
     tripsContainer.classList.remove('hidden')
     form.classList.add('hidden')
     mainHeader.innerText = "Your Trips"
+    bookTripButton.classList.remove('hidden')
+    pendingButton.classList.remove('hidden')
+    allTripsButton.classList.remove('hidden')
+    pastTripsButton.classList.remove('hidden')
 });
 
 form.addEventListener('submit', function(event){
@@ -151,6 +155,10 @@ const displayForm = () => {
     tripsContainer.classList.add('hidden')
     form.classList.remove('hidden')
     mainHeader.innerText = "Book a New Trip"
+    bookTripButton.classList.add('hidden')
+    pendingButton.classList.add('hidden')
+    allTripsButton.classList.add('hidden')
+    pastTripsButton.classList.add('hidden')
 }
 
 const populateDestinationSelection = (destinationData) => {

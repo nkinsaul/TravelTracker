@@ -23,7 +23,8 @@ describe('Destinations', function() {
     });
 
     it('should have a location', () => {
-        expect(newDestination.location).to.equal('Manila, Philippines')
+        // console.log(newDestination.d)
+        expect(newDestination.destination).to.equal('Manila, Philippines')
     });
     
     it('should have an estimated lodging cost per day', () => {

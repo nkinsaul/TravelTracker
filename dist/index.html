@@ -13,11 +13,11 @@
   <aside>
     <section class="aside-section-1">
       <h1 class="aside-header" id="asideHeader">Hello User</h1>
-      <button>Book a New Trip</button>
+      <button id="bookTripButton">Book a New Trip</button>
     </section>
     <section class="aside-section-2">
       <button>See Previous Trips</button>
-      <button>See Pending Trips</button>
+      <button id="pendingTripsButton">See Pending Trips</button>
     </section>
     <section class="aside-section-3">
       <h2>Spent on Trips this Year</h2>
@@ -25,8 +25,23 @@
     </section>
   </aside>
   <main>
-    <h1 class="main-header">All Trips</h1>
+    <h1 class="main-header" id="mainHeader">Your Trips</h1>
     <section class="trips-container" id="tripsContainer"></section>
+    <form class="form hidden" id="form">
+      <p class=" error-message hidden" id="errorMessage"></p>
+      <label for="date">Date:</label>
+      <input id="date" type="date" name="date" required>
+      <label for="duration">Duration:</label>
+      <input id="duration" type="number" name="duration" required> 
+      <label for="num-travelers">Number of Travelers:</label>
+      <input id="numTravelers" type="number" name="num-travelers" required>
+      <label for="destination">Select Destination</label>
+      <select id="destination" type="text" name="destination" required>
+        <option></option>
+      </select> 
+      <button class="form-button" type="submit" id="submitButton">Submit</button>
+      <button class="form-button" id="backToTrips">Back to Trips</button>
+    </form>
   </main>
   
   <script src="bundle.js"></script>

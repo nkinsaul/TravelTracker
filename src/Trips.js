@@ -1,4 +1,6 @@
 import Destination from "./Destinations";
+import dayjs from "dayjs";
+import trips from "./data/mock-Trips-data";
 
 class Trips {
     constructor(tripData, userId) {
@@ -11,13 +13,14 @@ class Trips {
         const convertDate = allTrips.forEach(trip => {
             trip.date = Date.parse(trip.date)
         })
-        return allTrips.sort((b, a) => {
-            return a.date - b.date
+        const sortedTrips = allTrips.sort((a, b) => {
+            return b.date - a.date
         })
+        sortedTrips.forEach(trip => {
+            trip.date =  dayjs(trip.date).format('YYYY/MM/DD')
+        })
+        return sortedTrips
     }
-    
-    //Above method will return trips in order from most recent trip to oldest trip.  Number representing the date will need to be parsed back into a more readable date format to be displayed
-
     findApprovedTrips() {
         return this.usersTrips.filter(trip => {
             return trip.status === 'approved'
@@ -37,6 +40,11 @@ class Trips {
         const destination = new Destination(destinationData, destinationId)
         return destination.oneDestination
     }
+    findTripsFromThisYear() {
+        return this.usersTrips.filter(trip => {
+            return dayjs().year() === parseInt(trip.date.slice(0, 4))
+        })
+    }
     calculateTripCost(tripId, destinationData) {
         const trip = this.findSingleTrip(tripId)
         const destination = this.findTripDestination(destinationData, trip.destinationID)
@@ -45,24 +53,25 @@ class Trips {
         return tripTotal + agentFee
     }
     findTotalTripsCost(destinationData) {
-        const tripDestinationIDS = this.usersTrips.map(trip => {
+        const thisYearsTrips = this.findTripsFromThisYear()
+        const tripDestinationIDS = thisYearsTrips.map(trip => {
             return trip.destinationID
         })
         const tripDestinations = tripDestinationIDS.map(id => {
             return new Destination(destinationData, id)
         })
-        const calculateTripCost = this.usersTrips.map((trip, index) => {
-            return (trip.duration * tripDestinations[index].estimatedLodgingCostPerDay) + (trip.travelers * tripDestinations[index].estimatedFlightCostPerPerson)
+        const calculateTripCost = thisYearsTrips.map((trip, index) => {
+            const tripTotal = (trip.duration * tripDestinations[index].estimatedLodgingCostPerDay) + (trip.travelers * tripDestinations[index].estimatedFlightCostPerPerson)
+            const agentFee = tripTotal * .10
+            return tripTotal + agentFee
         })
         const sumTripTotals = calculateTripCost.reduce((sum, cost) => {
             sum += cost
             return sum
         },0)
-        console.log('calculate trip cost:', calculateTripCost)
-        console.log('users trips:', this.usersTrips)
-        console.log('trip destinations:', tripDestinations)
         return sumTripTotals
     }
+
 }
 
 export default Trips

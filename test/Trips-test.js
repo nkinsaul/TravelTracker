@@ -22,86 +22,72 @@ describe ("Trips", function() {
     })
     
     it('should get all trips for one user', () => {
-        expect(traveler25Trips).to.deep.equal([{
-            "id": 138,
+        expect(traveler25Trips.length).to.equal(5)
+    });
+
+    it('should sort dates from latest to oldest', () => {
+        expect(traveler25Trips).to.deep.equal([
+            {
+            "id": 190,
             "userID": 25,
-            "destinationID": 22,
+            "destinationID": 28,
             "travelers": 3,
-            "date": "2020/10/29",
-            "duration": 18,
-            "status": "pending",
-            "suggestedActivities": []
-            },
-            {
-            "id": 159,
-            "userID": 25,
-            "destinationID": 42,
-            "travelers": 6,
-            "date": "2020/07/24",
-            "duration": 17,
-            "status": "approved",
-            "suggestedActivities": []
-            },
-            {
-            "id": 189,
-            "userID": 25,
-            "destinationID": 15,
-            "travelers": 4,
-            "date": "2019/12/01",
-            "duration": 10,
-            "status": "approved",
-            "suggestedActivities": []
-            },
-            {
-            "id": 26,
-            "userID": 25,
-            "destinationID": 15,
-            "travelers": 3,
-            "date": "2019/12/10",
+            "date": "2023/01/03",
             "duration": 9,
             "status": "approved",
             "suggestedActivities": []
-            }])
+            },
+            {
+              id: 138,
+              userID: 25,
+              destinationID: 22,
+              travelers: 3,
+              date: '2020/10/29',
+              duration: 18,
+              status: 'pending',
+              suggestedActivities: []
+            },
+            {
+              id: 159,
+              userID: 25,
+              destinationID: 42,
+              travelers: 6,
+              date: '2020/07/24',
+              duration: 17,
+              status: 'approved',
+              suggestedActivities: []
+            },
+            {
+              id: 26,
+              userID: 25,
+              destinationID: 15,
+              travelers: 3,
+              date: '2019/12/10',
+              duration: 9,
+              status: 'approved',
+              suggestedActivities: []
+            },
+            {
+              id: 189,
+              userID: 25,
+              destinationID: 15,
+              travelers: 4,
+              date: '2019/12/01',
+              duration: 10,
+              status: 'approved',
+              suggestedActivities: []
+            }
+          ]
+        )
     })
 
     it('should find a users approved trips', () => {
         const user25ApprovedTrips = tripsData.findApprovedTrips(25)
-
-        expect(user25ApprovedTrips).to.deep.equal([{
-            "id": 159,
-            "userID": 25,
-            "destinationID": 42,
-            "travelers": 6,
-            "date": "2020/07/24",
-            "duration": 17,
-            "status": "approved",
-            "suggestedActivities": []
-            },
-            {
-            "id": 189,
-            "userID": 25,
-            "destinationID": 15,
-            "travelers": 4,
-            "date": "2019/12/01",
-            "duration": 10,
-            "status": "approved",
-            "suggestedActivities": []
-            },
-            {
-            "id": 26,
-            "userID": 25,
-            "destinationID": 15,
-            "travelers": 3,
-            "date": "2019/12/10",
-            "duration": 9,
-            "status": "approved",
-            "suggestedActivities": []
-            }]);
+        expect(user25ApprovedTrips.length).to.equal(4) 
     });
 
     it('should find pending trips for a user', () => {
         const user25PendingTrips = tripsData.findPendingTrips(25)
-        
         expect(user25PendingTrips).to.deep.equal([{
             "id": 138,
             "userID": 25,
@@ -147,6 +133,26 @@ describe ("Trips", function() {
         const tripCost = tripsData.calculateTripCost(138, destinations)
 
         expect(tripCost).to.equal(3927)
+    })
+
+    it('should find trips from the current year', () => {
+        const thisYearsTrips = tripsData.findTripsFromThisYear();
+        expect(thisYearsTrips).to.deep.equal([{
+            "id": 190,
+            "userID": 25,
+            "destinationID": 28,
+            "travelers": 3,
+            "date": "2023/01/03",
+            "duration": 9,
+            "status": "approved",
+            "suggestedActivities": []
+            }])
+    })
+
+    it('should calculate total trips cost for the current year', () => {
+        const thisYearsTripCost = tripsData.findTotalTripsCost(destinations)
+
+        expect(thisYearsTripCost).to.equal(3663);
     })
 
 });

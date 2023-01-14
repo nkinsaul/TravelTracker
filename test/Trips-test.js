@@ -150,7 +150,9 @@ describe ("Trips", function() {
     })
 
     it('should calculate total trips cost for the current year', () => {
+        const thisYearsTripCost = tripsData.findTotalTripsCost(destinations)
 
+        expect(thisYearsTripCost).to.equal(3663);
     })
 
 });

@@ -53,13 +53,14 @@ class Trips {
         return tripTotal + agentFee
     }
     findTotalTripsCost(destinationData) {
-        const tripDestinationIDS = this.usersTrips.map(trip => {
+        const thisYearsTrips = this.findTripsFromThisYear()
+        const tripDestinationIDS = thisYearsTrips.map(trip => {
             return trip.destinationID
         })
         const tripDestinations = tripDestinationIDS.map(id => {
             return new Destination(destinationData, id)
         })
-        const calculateTripCost = this.usersTrips.map((trip, index) => {
+        const calculateTripCost = thisYearsTrips.map((trip, index) => {
             const tripTotal = (trip.duration * tripDestinations[index].estimatedLodgingCostPerDay) + (trip.travelers * tripDestinations[index].estimatedFlightCostPerPerson)
             const agentFee = tripTotal * .10
             return tripTotal + agentFee

@@ -58,10 +58,11 @@ backToTripsButton.addEventListener('click', function(event) {
 });
 
 form.addEventListener('submit', function(event){
-    event.preventDefault();
+    event.preventDefault()
+    let dateCheck = new Date(dateInput.value)
     let modifyDate = dateInput.value.replaceAll('-', '/')
     let modifyDestination = destinationInput.value.split(' ')[0]
-    checkInputSubmit(newTripId, randomUserId, parseInt(modifyDestination), parseInt(numTravelersInput.value), modifyDate, parseInt(durationInput.value), destinationData)
+    checkInputSubmit(newTripId, randomUserId, parseInt(modifyDestination), parseInt(numTravelersInput.value), modifyDate, parseInt(durationInput.value), dateCheck)
 })
 
 pendingButton.addEventListener('click', function(event) {
@@ -216,7 +217,8 @@ const pleaseTryAgainError = () => {
     setTimeout(() => message.classList.add('hidden'), 3000)
 }
 
-const checkInputSubmit = (id, userID, destinationID, travelers, date, duration, destinationData) => {
+const checkInputSubmit = (id, userID, destinationID, travelers, date, duration, dateCheck) => {
+    let today = new Date()
     if (durationInput.value > 30) {
         errorMessage.innerText = 'For bookings over 30 days please call 1-888-BOOK-NOW'
         errorMessage.classList.remove('hidden')
@@ -227,6 +229,10 @@ const checkInputSubmit = (id, userID, destinationID, travelers, date, duration, 
         errorMessage.classList.remove('hidden')
         setTimeout(() => clearForm(), 3000);
         setTimeout(() => errorMessage.classList.add('hidden'), 3000)
+    } else if (dateCheck <= today) {
+        errorMessage.innerText = 'Please select a date after today.'
+        errorMessage.classList.remove('hidden')
+        setTimeout(() => errorMessage.classList.add('hidden'), 3000)
     } else {
         addTripData(id, userID, destinationID, travelers, date, duration)
         .then(fetchNewData())
@@ -235,7 +241,14 @@ const checkInputSubmit = (id, userID, destinationID, travelers, date, duration, 
         errorMessage.innerText = 'Booked!'
         errorMessage.classList.remove('hidden')
         setTimeout(() => errorMessage.classList.add('hidden'), 3000)
-    }
+        setTimeout(() => form.classList.add('hidden'), 3000)
+        setTimeout(() => tripsContainer.classList.remove('hidden'), 3000)
+        setTimeout(() => bookTripButton.classList.remove('hidden'), 3000)
+        setTimeout(() => pendingButton.classList.remove('hidden'), 3000)
+        setTimeout(() => allTripsButton.classList.remove('hidden'), 3000)
+        setTimeout(() => pastTripsButton.classList.remove('hidden'), 3000)
+        setTimeout(() => displayDestinationImages(tripsData, destinationData), 3000)
+    }   
 }
 
 const displayPendingTrips = () => {
@@ -326,7 +339,7 @@ const checkInputEstimate = (destinationData, destinationId, duration, travelers,
         setTimeout(() => clearForm(), 3000);
         setTimeout(() => errorMessage.classList.add('hidden'), 3000)
     } else if (date <= today) {
-        errorMessage.innerText = 'Please select a date after today!'
+        errorMessage.innerText = 'Please select a date after today.'
         errorMessage.classList.remove('hidden')
     } else {
         showTripEstimate(destinationData, destinationId, duration, travelers)

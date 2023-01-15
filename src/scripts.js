@@ -148,6 +148,7 @@ const displayDestinationImages = () => {
         let numTravelers = document.createElement('P')
         numTravelers.classList.add('num-travelers')
         img.src = travelersDestinations[index].image
+        img.alt = travelersDestinations[index].alt
         destName.innerHTML = travelersDestinations[index].destination
         tripDate.innerText = dayjs(trip.date).format('MMM D, YYYY')
         tripDuration.innerText = `Duration: ${trip.duration} days`
@@ -271,6 +272,7 @@ const displayPendingTrips = () => {
         let numTravelers = document.createElement('P')
         numTravelers.classList.add('num-travelers')
         img.src = destinations[index].image
+        img.alt = destinations[index].alt
         destName.innerHTML = destinations[index].destination
         tripDate.innerText = dayjs(trip.date).format('MMM D, YYYY')
         tripDuration.innerText = `Duration: ${trip.duration} days`
@@ -297,6 +299,7 @@ const displayPastTrips = () => {
         let tripInfoContainer = document.createElement('div')
         tripInfoContainer.classList.add('trip-info-container')
         let img = document.createElement('img')
+        img.alt = travelersDestinations[index].alt
         let destName = document.createElement('CAPTION')
         let tripDate = document.createElement('P')
         tripDate.classList.add('trip-date')
@@ -305,6 +308,7 @@ const displayPastTrips = () => {
         let numTravelers = document.createElement('P')
         numTravelers.classList.add('num-travelers')
         img.src = destinations[index].image
+        img.alt = destinations[index].alt
         destName.innerHTML = destinations[index].destination
         tripDate.innerText = dayjs(trip.date).format('MMM D, YYYY')
         tripDuration.innerText = `Duration: ${trip.duration} days`

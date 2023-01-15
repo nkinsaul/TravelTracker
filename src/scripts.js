@@ -35,7 +35,14 @@ const pendingButton = document.getElementById('pendingTripsButton')
 const allTripsButton = document.getElementById('seeAllTripsButton')
 const pastTripsButton = document.getElementById('pastTripsButton')
 const tripEstimateButton = document.getElementById('tripEstimateButton')
+const tripInfoSection = document.getElementById('userTripsInfo')
+var cards = document.querySelectorAll('.flip-box-cont');
 
+cards.forEach((card)=>{
+  card.addEventListener( 'click', function() {
+    card.classList.toggle('is-flipped');
+  });
+});
 
 // event listeners 
 
@@ -81,8 +88,6 @@ tripEstimateButton.addEventListener('click', function(event) {
     checkInputEstimate(destinationData, parseInt(modifyDestination), parseInt(durationInput.value), parseInt(numTravelersInput.value))
 })
 
-
-
 // global variables
 
 let travelerData;
@@ -93,7 +98,6 @@ let travelersTrips;
 let travelersDestinations;
 let randomUserId;
 let newTripId;
-
 
 // functions
 
@@ -130,21 +134,72 @@ const getTripsAndDestinations = (tripsData, destinationData) => {
         arr.push(new Destination(destinationData, trip.destinationID))
         return arr
     },[]);
+    // displayTripsInfo(travelersTrips, travelersDestinations);
 };
+
+// const displayDestinationImages = () => {
+//     tripsContainer.innerHTML = ''
+//     travelersDestinations.forEach(destination => {
+//         let trip = document.createElement('ARTICLE')
+//         let img = document.createElement('img')
+//         img.src = destination.image
+//         let destName = document.createElement('CAPTION')
+//         destName.innerHTML = destination.destination
+//         tripsContainer.appendChild(trip)
+//         trip.appendChild(img)
+//         trip.appendChild(destName)
+//     });
+// }
 
 const displayDestinationImages = () => {
     tripsContainer.innerHTML = ''
-    travelersDestinations.forEach(destination => {
-        let trip = document.createElement('ARTICLE')
+
+    travelersTrips.usersTrips.forEach((trip, index) => {
+        console.log(trip)
+        let tripDestination = document.createElement('ARTICLE')
+        let tripInfoContainer = document.createElement('div')
+        tripInfoContainer.classList.add('trip-info-container')
         let img = document.createElement('img')
-        img.src = destination.image
         let destName = document.createElement('CAPTION')
-        destName.innerHTML = destination.destination
-        tripsContainer.appendChild(trip)
-        trip.appendChild(img)
-        trip.appendChild(destName)
+        let tripDate = document.createElement('P')
+        tripDate.classList.add('trip-date')
+        let tripDuration = document.createElement('P')
+        tripDuration.classList.add('trip-duration')
+        let numTravelers = document.createElement('P')
+        numTravelers.classList.add('num-travelers')
+        img.src = travelersDestinations[index].image
+        destName.innerHTML = travelersDestinations[index].destination
+        tripDate.innerText = dayjs(trip.date).format('MMM D, YYYY')
+        tripDuration.innerText = `Duration: ${trip.duration} days`
+        numTravelers.innerText = `${trip.travelers} Travelers`
+        tripsContainer.appendChild(tripDestination)
+        tripDestination.appendChild(img)
+        tripDestination.appendChild(destName)
+        tripDestination.appendChild(tripInfoContainer)
+        tripInfoContainer.appendChild(tripDate)
+        tripInfoContainer.appendChild(tripDuration)
+        tripInfoContainer.appendChild(numTravelers)
     });
 }
+
+// const displayTripsInfo = (travelersTrips, travelersDestinations) => {
+//     console.log(travelersTrips);
+//     travelersTrips.usersTrips.forEach((trip, index) => {
+//         console.log(trip)
+//         let tripDestination = document.createElement('HEADER')
+//         let tripDate = document.createElement('P')
+//         let tripDuration = document.createElement('P')
+//         let numTravelers = document.createElement('P')
+//         tripDestination.innerText = travelersDestinations[index].destination
+//         tripDate.innerText = trip.date
+//         tripDuration.innerText = trip.duration
+//         numTravelers.innerText = trip.travelers
+//         tripInfoSection.appendChild(tripDestination)
+//         tripDestination.appendChild(tripDate)
+//         tripDestination.appendChild(tripDuration)
+//         tripDestination.appendChild(numTravelers)
+//     })
+// }
 
 const displayTripTotal = (travelersTrips, destinationData) => {
     const totalTripsCost = travelersTrips.findTotalTripsCost(destinationData)
@@ -284,5 +339,26 @@ const checkInputEstimate = (destinationData, destinationId, duration, travelers)
     }
 }
 
+// const displayTripsInfo = (travelersTrips, travelersDestinations) => {
+//     console.log(travelersTrips);
+//     travelersTrips.usersTrips.forEach((trip, index) => {
+//         console.log(trip)
+//         let tripDestination = document.createElement('HEADER')
+//         let tripDate = document.createElement('P')
+//         let tripDuration = document.createElement('P')
+//         let numTravelers = document.createElement('P')
+//         tripDestination.innerText = travelersDestinations[index].destination
+//         tripDate.innerText = trip.date
+//         tripDuration.innerText = trip.duration
+//         numTravelers.innerText = trip.travelers
+//         tripInfoSection.appendChild(tripDestination)
+//         tripDestination.appendChild(tripDate)
+//         tripDestination.appendChild(tripDuration)
+//         tripDestination.appendChild(numTravelers)
+//     })
+// }
+
 
 export {pleaseTryAgainError}
+
+

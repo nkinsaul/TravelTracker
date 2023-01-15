@@ -135,3 +135,24 @@ img {
 input, select {
   height: 5%;
 }
+
+.trip-date, .trip-duration, .num-travelers {
+  margin: 0;
+}
+
+.trip-duration {
+  bottom: 47%;
+}
+
+.num-travelers {
+  bottom: 44%;
+}
+
+.trip-info-container {
+  margin: 0;
+  position: relative;
+  bottom: 73%;
+  background-color:rgba(0, 71, 119, .7);
+  width: 75%;
+  text-align: center;
+}

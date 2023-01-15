@@ -140,12 +140,17 @@ const displayDestinationImages = () => {
         let tripInfoContainer = document.createElement('div')
         tripInfoContainer.classList.add('trip-info-container')
         let img = document.createElement('img')
+        img.setAttribute('tabindex', '0')
         let destName = document.createElement('CAPTION')
+        destName.setAttribute('tabindex', '0')
         let tripDate = document.createElement('P')
+        tripDate.setAttribute('tabindex', '0')
         tripDate.classList.add('trip-date')
         let tripDuration = document.createElement('P')
+        tripDuration.setAttribute('tabindex', '0')
         tripDuration.classList.add('trip-duration')
         let numTravelers = document.createElement('P')
+        numTravelers.setAttribute('tabindex', '0')
         numTravelers.classList.add('num-travelers')
         img.src = travelersDestinations[index].image
         img.alt = travelersDestinations[index].alt

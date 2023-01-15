@@ -79,7 +79,8 @@ pastTripsButton.addEventListener('click', function(event) {
 tripEstimateButton.addEventListener('click', function(event) {
     event.preventDefault()
     let modifyDestination = destinationInput.value.split(' ')[0]
-    checkInputEstimate(destinationData, parseInt(modifyDestination), parseInt(durationInput.value), parseInt(numTravelersInput.value))
+    let date = new Date(dateInput.value)
+    checkInputEstimate(destinationData, parseInt(modifyDestination), parseInt(durationInput.value), parseInt(numTravelersInput.value), date)
 })
 
 // global variables
@@ -134,7 +135,6 @@ const getTripsAndDestinations = (tripsData, destinationData) => {
 const displayDestinationImages = () => {
     tripsContainer.innerHTML = ''
     travelersTrips.usersTrips.forEach((trip, index) => {
-        console.log(trip)
         let tripDestination = document.createElement('ARTICLE')
         let tripInfoContainer = document.createElement('div')
         tripInfoContainer.classList.add('trip-info-container')
@@ -309,12 +309,12 @@ const displayPastTrips = () => {
 const showTripEstimate = (destinationData, destinationId, duration, travelers) => {
     const newDestination = new Destination(destinationData, destinationId)
     const tripCost = newDestination.estimateTripCost(duration, travelers)
-    console.log(tripCost);
     errorMessage.innerText = `Your estimated trip cost is $${tripCost}. Click submit to book your trip!`
     errorMessage.classList.remove('hidden')
 }
 
-const checkInputEstimate = (destinationData, destinationId, duration, travelers) => {
+const checkInputEstimate = (destinationData, destinationId, duration, travelers, date) => {
+    let today = new Date()
     if (duration > 30) {
         errorMessage.innerText = 'For bookings over 30 days please call 1-888-BOOK-NOW'
         errorMessage.classList.remove('hidden')
@@ -325,6 +325,9 @@ const checkInputEstimate = (destinationData, destinationId, duration, travelers)
         errorMessage.classList.remove('hidden')
         setTimeout(() => clearForm(), 3000);
         setTimeout(() => errorMessage.classList.add('hidden'), 3000)
+    } else if (date <= today) {
+        errorMessage.innerText = 'Please select a date after today!'
+        errorMessage.classList.remove('hidden')
     } else {
         showTripEstimate(destinationData, destinationId, duration, travelers)
     }

@@ -28,14 +28,17 @@ const pastTripsButton = document.getElementById('pastTripsButton')
 const tripEstimateButton = document.getElementById('tripEstimateButton')
 const tripInfoSection = document.getElementById('userTripsInfo')
 const loginForm = document.getElementById('loginForm')
+const userName = document.getElementById('userName')
+const password = document.getElementById('password')
 
 
 // event listeners 
 
 loginForm.addEventListener('submit', function(event) {
-    checkLogin()
+    event.preventDefault();
+    // checkLogin()
 })
-
+ 
 bookTripButton.addEventListener('click', function(event) {
     event.preventDefault();
     displayForm();
@@ -111,6 +114,7 @@ function onLoad (travelerData, tripsData, destinationData) {
     getTripsAndDestinations(tripsData, destinationData);
     displayDestinationImages(tripsData, destinationData);
     generateTripID(tripsData);
+    // checkLogin(travelerData)
 };
 
 const displayUserWelcome = (travelerData, userId) => {
@@ -361,8 +365,14 @@ const checkInputEstimate = (destinationData, destinationId, duration, travelers,
     }
 }
 
-// const checkLogin = () => {
-//     if()
+// const checkLogin = (travelerData) => {
+//     const logins = travelerData.map(traveler => {
+//         return traveler.id
+//     })
+//     const userName = userName.value.split('')
+//     if(userName === `traveler${userId}`) {
+//         console.log()
+//     }
 // }
 
 export {pleaseTryAgainError}

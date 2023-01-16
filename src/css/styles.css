@@ -98,10 +98,6 @@ caption {
   padding-top: 2%;
 }
 
-.hidden {
-  display: none;
-}
-
 .book-trip-form {
   display: flex;
   flex-direction: column;
@@ -183,4 +179,8 @@ input, select {
 .login-button {
   width: 100%;
   height: 15%;
+}
+
+.hidden {
+  display: none;
 }

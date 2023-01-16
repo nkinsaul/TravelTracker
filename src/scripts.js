@@ -8,6 +8,7 @@ import Destination from './Destinations';
 import { addTripData, fetchData } from './apiCalls';
 import dayjs from 'dayjs';
 
+
 // query selectors
 
 const welcomeUser = document.getElementById('asideHeader');
@@ -30,13 +31,15 @@ const tripInfoSection = document.getElementById('userTripsInfo')
 const loginForm = document.getElementById('loginForm')
 const userName = document.getElementById('userName')
 const password = document.getElementById('password')
+const aside = document.getElementById('aside')
+const main = document.getElementById('main')
 
 
 // event listeners 
 
 loginForm.addEventListener('submit', function(event) {
     event.preventDefault();
-    // checkLogin()
+    checkLogin(travelerData);
 })
  
 bookTripButton.addEventListener('click', function(event) {
@@ -61,7 +64,7 @@ form.addEventListener('submit', function(event){
     let dateCheck = new Date(dateInput.value)
     let modifyDate = dateInput.value.replaceAll('-', '/')
     let modifyDestination = destinationInput.value.split(' ')[0]
-    checkInputSubmit(newTripId, randomUserId, parseInt(modifyDestination), parseInt(numTravelersInput.value), modifyDate, parseInt(durationInput.value), dateCheck)
+    checkInputSubmit(newTripId, userId, parseInt(modifyDestination), parseInt(numTravelersInput.value), modifyDate, parseInt(durationInput.value), dateCheck)
 })
 
 pendingButton.addEventListener('click', function(event) {
@@ -91,30 +94,35 @@ let destinationData;
 let traveler;
 let travelersTrips;
 let travelersDestinations;
-let randomUserId;
+let userId;
 let newTripId;
 
 // functions
 
-Promise.all([fetchData('travelers'), fetchData('trips'), fetchData('destinations')])
+Promise.all([fetchData('travelers')])
     .then(data => {
         travelerData = data[0].travelers
-        tripsData = data[1].trips
-        destinationData = data[2].destinations
-        onLoad(travelerData, tripsData, destinationData)
+        // onLoad(travelerData, tripsData, destinationData)
     })
 
-const generateRandomUserId = (min, max) => {
-    randomUserId = Math.floor(Math.random() * (max - min) + 1)
-}
+    // Promise.all([fetchData('travelers'), fetchData('trips'), fetchData('destinations')])
+    // .then(data => {
+    //     travelerData = data[0].travelers
+    //     tripsData = data[1].trips
+    //     destinationData = data[2].destinations
+    //     onLoad(travelerData, tripsData, destinationData)
+    // })
+
+// const generateRandomUserId = (min, max) => {
+//     randomUserId = Math.floor(Math.random() * (max - min) + 1)
+// }
 
 function onLoad (travelerData, tripsData, destinationData) {
-    generateRandomUserId(1, 50);
-    displayUserWelcome(travelerData, randomUserId);
+    // generateRandomUserId(1, 50);
+    displayUserWelcome(travelerData, userId);
     getTripsAndDestinations(tripsData, destinationData);
     displayDestinationImages(tripsData, destinationData);
     generateTripID(tripsData);
-    // checkLogin(travelerData)
 };
 
 const displayUserWelcome = (travelerData, userId) => {
@@ -365,15 +373,28 @@ const checkInputEstimate = (destinationData, destinationId, duration, travelers,
     }
 }
 
-// const checkLogin = (travelerData) => {
-//     const logins = travelerData.map(traveler => {
-//         return traveler.id
-//     })
-//     const userName = userName.value.split('')
-//     if(userName === `traveler${userId}`) {
-//         console.log()
-//     }
-// }
+const checkLogin = (travelerData) => {
+    const logins = travelerData.map(traveler => {
+        return traveler.id
+    })
+    const slicedNumber = parseInt(userName.value.slice(8, 10))
+    const slicedName = userName.value.slice(0, 8)
+    if(slicedName === 'traveler' && logins.includes(slicedNumber) && password.value === 'travel') {
+        userId = slicedNumber
+        Promise.all([fetchData('travelers'), fetchData('trips'), fetchData('destinations')])
+        .then(data => {
+            travelerData = data[0].travelers
+            tripsData = data[1].trips
+            destinationData = data[2].destinations
+            onLoad(travelerData, tripsData, destinationData)
+            aside.classList.remove('hidden')
+            main.classList.remove('hidden')
+            loginForm.classList.add('hidden')
+    })
+    } else {
+        console.log(`Sorry that information doesn't match our records, please re-enter your login information`)
+    }
+}
 
 export {pleaseTryAgainError}
 

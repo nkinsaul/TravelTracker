@@ -104,7 +104,7 @@ caption {
   display: none;
 }
 
-form {
+.book-trip-form {
   display: flex;
   flex-direction: column;
   width: 50%;
@@ -155,4 +155,29 @@ input, select {
   background-color:rgba(0, 71, 119, .7);
   width: 75%;
   text-align: center;
+}
+
+.login-form {
+  background-color: rgba(0, 175, 181, .3);
+  position: relative;
+  bottom: 0%;
+  left: 35%;
+  top: 25%;
+  height: 25%;
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  justify-content: space-around;
+  padding: 5%;
+  border-radius: 10%;
+}
+
+.user-name-label {
+  position: relative;
+  top: -7%
+}
+
+.password-label {
+  position: relative;
+  top: -8%
 }

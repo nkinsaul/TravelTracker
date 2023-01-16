@@ -33,6 +33,7 @@ const userName = document.getElementById('userName')
 const password = document.getElementById('password')
 const aside = document.getElementById('aside')
 const main = document.getElementById('main')
+const loginErrorMessage = document.getElementById('errorMessage')
 
 
 // event listeners 
@@ -381,18 +382,21 @@ const checkLogin = (travelerData) => {
     const slicedName = userName.value.slice(0, 8)
     if(slicedName === 'traveler' && logins.includes(slicedNumber) && password.value === 'travel') {
         userId = slicedNumber
-        Promise.all([fetchData('travelers'), fetchData('trips'), fetchData('destinations')])
+        Promise.all([fetchData('trips'), fetchData('destinations')])
         .then(data => {
-            travelerData = data[0].travelers
-            tripsData = data[1].trips
-            destinationData = data[2].destinations
+            
+            tripsData = data[0].trips
+            destinationData = data[1].destinations
             onLoad(travelerData, tripsData, destinationData)
             aside.classList.remove('hidden')
             main.classList.remove('hidden')
             loginForm.classList.add('hidden')
     })
     } else {
-        console.log(`Sorry that information doesn't match our records, please re-enter your login information`)
+        loginErrorMessage.innerText = `Sorry that information doesn't match our records, please re-enter your login information`
+        loginErrorMessage.classList.remove('hidden')
+        setTimeout(() => loginErrorMessage.classList.add('hidden'), 3000)
+
     }
 }
 

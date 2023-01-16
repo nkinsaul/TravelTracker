@@ -10,7 +10,17 @@
   <title>Travel Tracker</title>
 </head>
 <body>
-  <aside>
+  <form class="login-form" id="loginForm">
+    <h1 id="loginHeader">Travel Tracker Login</h1>
+    <h4 class="login-error-message hidden" id="loginErrorMessage"></h4>
+    <input id="userName" type="text" name="userName" minlength="4" maxlength="10" required>
+    <label class="user-name-label" for="userName">User Name</label>
+    <input id="password" type="password" name="password" minLength=6 maxlength=6 required>
+    <label class="password-label" for="password">Password</label>
+    <button class="login-button" type="submit">Submit</button>
+    
+  </form>
+  <aside class="hidden" id="aside">
     <section class="aside-section-1">
       <h1 tabindex="0" class="aside-header" id="asideHeader">Hello User</h1>
       <button id="bookTripButton">Book a New Trip</button>
@@ -24,13 +34,12 @@
       <h2 tabindex="0">Spent on Trips this Year</h2>
       <p tabindex="0" class="trips-total-spent" id="tripsTotalSpent">$$$$</p>
     </section>
-    <section class="user-trips-info" id="userTripsInfo"></section>
   </aside>
-  <main>
+  <main class="hidden" id="main">
     <h1 tabindex="0" class="main-header" id="mainHeader">Your Trips</h1>
     <section class="trips-container" id="tripsContainer"></section>
-    <form class="form hidden" id="form">
-      <p tabindex="0" class=" error-message hidden" id="errorMessage"></p>
+    <form class="book-trip-form hidden" id="form">
+      <p tabindex="0" class="error-message hidden" id="errorMessage"></p>
       <label for="date">Date:</label>
       <input id="date" type="date" name="date" required>
       <label for="duration">Duration:</label>

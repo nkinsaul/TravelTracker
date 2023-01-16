@@ -27,9 +27,14 @@ const allTripsButton = document.getElementById('seeAllTripsButton')
 const pastTripsButton = document.getElementById('pastTripsButton')
 const tripEstimateButton = document.getElementById('tripEstimateButton')
 const tripInfoSection = document.getElementById('userTripsInfo')
+const loginForm = document.getElementById('loginForm')
 
 
 // event listeners 
+
+loginForm.addEventListener('submit', function(event) {
+    checkLogin()
+})
 
 bookTripButton.addEventListener('click', function(event) {
     event.preventDefault();
@@ -356,6 +361,9 @@ const checkInputEstimate = (destinationData, destinationId, duration, travelers,
     }
 }
 
+// const checkLogin = () => {
+//     if()
+// }
 
 export {pleaseTryAgainError}
 

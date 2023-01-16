@@ -3,7 +3,6 @@ body, html {
   width: 100%;
   display: flex;
   font-family: 'Montserrat', sans-serif;
-  
 }
 
 body {
@@ -20,7 +19,6 @@ aside {
   /* padding-right: 5%; */
   background-color: rgba(0, 175, 181, .6);
 }
-
 
 .aside-header {
   font-size: 3em;
@@ -174,10 +172,15 @@ input, select {
 
 .user-name-label {
   position: relative;
-  top: -7%
+  top: -4%
 }
 
 .password-label {
   position: relative;
-  top: -8%
+  top: -4%
+}
+
+.login-button {
+  width: 100%;
+  height: 15%;
 }

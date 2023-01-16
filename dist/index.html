@@ -12,7 +12,7 @@
 <body>
   <form class="login-form" id="loginForm">
     <h1>Login</h1>
-    <h4 class="login-error-message hidden" id="errorMessage"></h4>
+    <h4 class="login-error-message hidden" id="loginErrorMessage"></h4>
     <input id="userName" type="text" name="userName" minlength="4" maxlength="10" required>
     <label class="user-name-label" for="userName">User Name</label>
     <input id="password" type="password" name="password" minLength=6 maxlength=6 required>
@@ -39,7 +39,7 @@
     <h1 tabindex="0" class="main-header" id="mainHeader">Your Trips</h1>
     <section class="trips-container" id="tripsContainer"></section>
     <form class="book-trip-form hidden" id="form">
-      <p tabindex="0" class=" error-message hidden" id="errorMessage"></p>
+      <p tabindex="0" class="error-message hidden" id="errorMessage"></p>
       <label for="date">Date:</label>
       <input id="date" type="date" name="date" required>
       <label for="duration">Duration:</label>

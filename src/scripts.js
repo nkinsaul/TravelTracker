@@ -33,7 +33,7 @@ const userName = document.getElementById('userName')
 const password = document.getElementById('password')
 const aside = document.getElementById('aside')
 const main = document.getElementById('main')
-const loginErrorMessage = document.getElementById('errorMessage')
+const loginErrorMessage = document.getElementById('loginErrorMessage')
 
 
 // event listeners 

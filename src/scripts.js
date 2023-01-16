@@ -33,7 +33,6 @@ const password = document.getElementById('password')
 const aside = document.getElementById('aside')
 const main = document.getElementById('main')
 const loginErrorMessage = document.getElementById('loginErrorMessage')
-const loginHeader = document.getElementById('loginHeader')
 
 
 // event listeners 
@@ -103,23 +102,9 @@ let newTripId;
 Promise.all([fetchData('travelers')])
     .then(data => {
         travelerData = data[0].travelers
-        // onLoad(travelerData, tripsData, destinationData)
     })
 
-    // Promise.all([fetchData('travelers'), fetchData('trips'), fetchData('destinations')])
-    // .then(data => {
-    //     travelerData = data[0].travelers
-    //     tripsData = data[1].trips
-    //     destinationData = data[2].destinations
-    //     onLoad(travelerData, tripsData, destinationData)
-    // })
-
-// const generateRandomUserId = (min, max) => {
-//     randomUserId = Math.floor(Math.random() * (max - min) + 1)
-// }
-
 function onLoad (travelerData, tripsData, destinationData) {
-    // generateRandomUserId(1, 50);
     displayUserWelcome(travelerData, userId);
     getTripsAndDestinations(tripsData, destinationData);
     displayDestinationImages(tripsData, destinationData);
@@ -144,7 +129,11 @@ const getTripsAndDestinations = (tripsData, destinationData) => {
 
 const displayDestinationImages = () => {
     tripsContainer.innerHTML = ''
-    travelersTrips.usersTrips.forEach((trip, index) => {
+    displayTrips(travelersTrips.usersTrips, travelersDestinations);
+}
+
+const displayTrips = (trips, destinations) => {
+    trips.forEach((trip, index) => {
         let tripDestination = document.createElement('ARTICLE')
         let tripInfoContainer = document.createElement('div')
         tripInfoContainer.classList.add('trip-info-container')
@@ -161,9 +150,9 @@ const displayDestinationImages = () => {
         let numTravelers = document.createElement('P')
         numTravelers.setAttribute('tabindex', '0')
         numTravelers.classList.add('num-travelers')
-        img.src = travelersDestinations[index].image
-        img.alt = travelersDestinations[index].alt
-        destName.innerHTML = travelersDestinations[index].destination
+        img.src = destinations[index].image
+        img.alt = destinations[index].alt
+        destName.innerHTML = destinations[index].destination
         tripDate.innerText = `Trip Date: ${dayjs(trip.date).format('MMM D, YYYY')}`
         tripDuration.innerText = `Duration: ${trip.duration} days`
         numTravelers.innerText = `${trip.travelers} Travelers`
@@ -273,37 +262,7 @@ const displayPendingTrips = () => {
         arr.push(new Destination(destinationData, trip.destinationID))
         return arr
     },[])
-    pendingTrips.forEach((trip, index) => {
-        let tripDestination = document.createElement('ARTICLE')
-        let tripInfoContainer = document.createElement('div')
-        tripInfoContainer.classList.add('trip-info-container')
-        let img = document.createElement('img')
-        img.setAttribute('tabindex', '0')
-        let destName = document.createElement('CAPTION')
-        destName.setAttribute('tabindex', '0')
-        let tripDate = document.createElement('P')
-        tripDate.setAttribute('tabindex', '0')
-        tripDate.classList.add('trip-date')
-        let tripDuration = document.createElement('P')
-        tripDuration.setAttribute('tabindex', '0')
-        tripDuration.classList.add('trip-duration')
-        let numTravelers = document.createElement('P')
-        numTravelers.setAttribute('tabindex', '0')
-        numTravelers.classList.add('num-travelers')
-        img.src = destinations[index].image
-        img.alt = destinations[index].alt
-        destName.innerHTML = destinations[index].destination
-        tripDate.innerText = `Trip Date: ${dayjs(trip.date).format('MMM D, YYYY')}`
-        tripDuration.innerText = `Duration: ${trip.duration} days`
-        numTravelers.innerText = `${trip.travelers} Travelers`
-        tripsContainer.appendChild(tripDestination)
-        tripDestination.appendChild(img)
-        tripDestination.appendChild(destName)
-        tripDestination.appendChild(tripInfoContainer)
-        tripInfoContainer.appendChild(tripDate)
-        tripInfoContainer.appendChild(tripDuration)
-        tripInfoContainer.appendChild(numTravelers)
-    })
+    displayTrips(pendingTrips, destinations);
 }
 
 const displayPastTrips = () => {
@@ -313,38 +272,7 @@ const displayPastTrips = () => {
         arr.push(new Destination(destinationData, trip.destinationID))
         return arr
     },[])
-    pastTrips.forEach((trip, index) => {
-        let tripDestination = document.createElement('ARTICLE')
-        let tripInfoContainer = document.createElement('div')
-        tripInfoContainer.classList.add('trip-info-container')
-        let img = document.createElement('img')
-        img.setAttribute('tabindex', '0')
-        img.alt = travelersDestinations[index].alt
-        let destName = document.createElement('CAPTION')
-        destName.setAttribute('tabindex', '0')
-        let tripDate = document.createElement('P')
-        tripDate.setAttribute('tabindex', '0')
-        tripDate.classList.add('trip-date')
-        let tripDuration = document.createElement('P')
-        tripDuration.setAttribute('tabindex', '0')
-        tripDuration.classList.add('trip-duration')
-        let numTravelers = document.createElement('P')
-        numTravelers.setAttribute('tabindex', '0')
-        numTravelers.classList.add('num-travelers')
-        img.src = destinations[index].image
-        img.alt = destinations[index].alt
-        destName.innerHTML = destinations[index].destination
-        tripDate.innerText = `Trip Date: ${dayjs(trip.date).format('MMM D, YYYY')}`
-        tripDuration.innerText = `Duration: ${trip.duration} days`
-        numTravelers.innerText = `${trip.travelers} Travelers`
-        tripsContainer.appendChild(tripDestination)
-        tripDestination.appendChild(img)
-        tripDestination.appendChild(destName)
-        tripDestination.appendChild(tripInfoContainer)
-        tripInfoContainer.appendChild(tripDate)
-        tripInfoContainer.appendChild(tripDuration)
-        tripInfoContainer.appendChild(numTravelers)
-    })
+    displayTrips(pastTrips, destinations);
 }
 
 const showTripEstimate = (destinationData, destinationId, duration, travelers) => {

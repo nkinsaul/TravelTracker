@@ -33,6 +33,7 @@ const password = document.getElementById('password')
 const aside = document.getElementById('aside')
 const main = document.getElementById('main')
 const loginErrorMessage = document.getElementById('loginErrorMessage')
+const loginHeader = document.getElementById('loginHeader')
 
 
 // event listeners 
@@ -392,7 +393,7 @@ const checkLogin = (travelerData) => {
             loginForm.classList.add('hidden')
     })
     } else {
-        loginErrorMessage.innerText = `Sorry that information doesn't match our records, please re-enter your login information`
+        loginErrorMessage.innerText = `Whoops, that doesn't match our records, please re-enter your login information`
         loginErrorMessage.classList.remove('hidden')
         setTimeout(() => loginErrorMessage.classList.add('hidden'), 3000)
 

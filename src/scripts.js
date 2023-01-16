@@ -1,14 +1,5 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
 
-// An example of how you tell webpack to use a CSS (SCSS) file
 import './css/styles.css';
-
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
-import './images/turing-logo.png'
-
-
-// console.log('This is the JavaScript entry file - your code begins here.');
 
 // imports 
 
@@ -140,16 +131,22 @@ const displayDestinationImages = () => {
         let tripInfoContainer = document.createElement('div')
         tripInfoContainer.classList.add('trip-info-container')
         let img = document.createElement('img')
+        img.setAttribute('tabindex', '0')
         let destName = document.createElement('CAPTION')
+        destName.setAttribute('tabindex', '0')
         let tripDate = document.createElement('P')
+        tripDate.setAttribute('tabindex', '0')
         tripDate.classList.add('trip-date')
         let tripDuration = document.createElement('P')
+        tripDuration.setAttribute('tabindex', '0')
         tripDuration.classList.add('trip-duration')
         let numTravelers = document.createElement('P')
+        numTravelers.setAttribute('tabindex', '0')
         numTravelers.classList.add('num-travelers')
         img.src = travelersDestinations[index].image
+        img.alt = travelersDestinations[index].alt
         destName.innerHTML = travelersDestinations[index].destination
-        tripDate.innerText = dayjs(trip.date).format('MMM D, YYYY')
+        tripDate.innerText = `Trip Date: ${dayjs(trip.date).format('MMM D, YYYY')}`
         tripDuration.innerText = `Duration: ${trip.duration} days`
         numTravelers.innerText = `${trip.travelers} Travelers`
         tripsContainer.appendChild(tripDestination)
@@ -165,7 +162,7 @@ const displayDestinationImages = () => {
 
 const displayTripTotal = (travelersTrips, destinationData) => {
     const totalTripsCost = travelersTrips.findTotalTripsCost(destinationData)
-    tripsTotalSpent.innerHTML = totalTripsCost;
+    tripsTotalSpent.innerHTML = `$${totalTripsCost}`;
 }
 
 const displayForm = () => {
@@ -263,16 +260,22 @@ const displayPendingTrips = () => {
         let tripInfoContainer = document.createElement('div')
         tripInfoContainer.classList.add('trip-info-container')
         let img = document.createElement('img')
+        img.setAttribute('tabindex', '0')
         let destName = document.createElement('CAPTION')
+        destName.setAttribute('tabindex', '0')
         let tripDate = document.createElement('P')
+        tripDate.setAttribute('tabindex', '0')
         tripDate.classList.add('trip-date')
         let tripDuration = document.createElement('P')
+        tripDuration.setAttribute('tabindex', '0')
         tripDuration.classList.add('trip-duration')
         let numTravelers = document.createElement('P')
+        numTravelers.setAttribute('tabindex', '0')
         numTravelers.classList.add('num-travelers')
         img.src = destinations[index].image
+        img.alt = destinations[index].alt
         destName.innerHTML = destinations[index].destination
-        tripDate.innerText = dayjs(trip.date).format('MMM D, YYYY')
+        tripDate.innerText = `Trip Date: ${dayjs(trip.date).format('MMM D, YYYY')}`
         tripDuration.innerText = `Duration: ${trip.duration} days`
         numTravelers.innerText = `${trip.travelers} Travelers`
         tripsContainer.appendChild(tripDestination)
@@ -297,16 +300,23 @@ const displayPastTrips = () => {
         let tripInfoContainer = document.createElement('div')
         tripInfoContainer.classList.add('trip-info-container')
         let img = document.createElement('img')
+        img.setAttribute('tabindex', '0')
+        img.alt = travelersDestinations[index].alt
         let destName = document.createElement('CAPTION')
+        destName.setAttribute('tabindex', '0')
         let tripDate = document.createElement('P')
+        tripDate.setAttribute('tabindex', '0')
         tripDate.classList.add('trip-date')
         let tripDuration = document.createElement('P')
+        tripDuration.setAttribute('tabindex', '0')
         tripDuration.classList.add('trip-duration')
         let numTravelers = document.createElement('P')
+        numTravelers.setAttribute('tabindex', '0')
         numTravelers.classList.add('num-travelers')
         img.src = destinations[index].image
+        img.alt = destinations[index].alt
         destName.innerHTML = destinations[index].destination
-        tripDate.innerText = dayjs(trip.date).format('MMM D, YYYY')
+        tripDate.innerText = `Trip Date: ${dayjs(trip.date).format('MMM D, YYYY')}`
         tripDuration.innerText = `Duration: ${trip.duration} days`
         numTravelers.innerText = `${trip.travelers} Travelers`
         tripsContainer.appendChild(tripDestination)

@@ -7,12 +7,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100;400;900&display=swap" rel="stylesheet">
-  <title>Webpack Starter Kit</title>
+  <title>Travel Tracker</title>
 </head>
 <body>
   <aside>
     <section class="aside-section-1">
-      <h1 class="aside-header" id="asideHeader">Hello User</h1>
+      <h1 tabindex="0" class="aside-header" id="asideHeader">Hello User</h1>
       <button id="bookTripButton">Book a New Trip</button>
     </section>
     <section class="aside-section-2">
@@ -21,22 +21,22 @@
       <button id="seeAllTripsButton">See All Trips</button>
     </section>
     <section class="aside-section-3">
-      <h2>Spent on Trips this Year</h2>
-      <p class="trips-total-spent" id="tripsTotalSpent">$$$$</p>
+      <h2 tabindex="0">Spent on Trips this Year</h2>
+      <p tabindex="0" class="trips-total-spent" id="tripsTotalSpent">$$$$</p>
     </section>
     <section class="user-trips-info" id="userTripsInfo"></section>
   </aside>
   <main>
-    <h1 class="main-header" id="mainHeader">Your Trips</h1>
+    <h1 tabindex="0" class="main-header" id="mainHeader">Your Trips</h1>
     <section class="trips-container" id="tripsContainer"></section>
     <form class="form hidden" id="form">
-      <p class=" error-message hidden" id="errorMessage"></p>
+      <p tabindex="0" class=" error-message hidden" id="errorMessage"></p>
       <label for="date">Date:</label>
       <input id="date" type="date" name="date" required>
       <label for="duration">Duration:</label>
       <input id="duration" type="number" name="duration" required> 
-      <label for="num-travelers">Number of Travelers:</label>
-      <input id="numTravelers" type="number" name="num-travelers" required>
+      <label for="numTravelers">Number of Travelers:</label>
+      <input id="numTravelers" type="number" name="numTravelers" required>
       <label for="destination">Select Destination</label>
       <select id="destination" type="text" name="destination" required>
         <option></option>

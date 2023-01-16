@@ -18,17 +18,16 @@
     <input id="password" type="password" name="password" minLength=6 maxlength=6 required>
     <label class="password-label" for="password">Password</label>
     <button class="login-button" type="submit">Submit</button>
-    
   </form>
   <aside class="hidden" id="aside">
     <section class="aside-section-1">
       <h1 tabindex="0" class="aside-header" id="asideHeader">Hello User</h1>
-      <button id="bookTripButton">Book a New Trip</button>
+      <button class="main-button" id="bookTripButton">Book a New Trip</button>
     </section>
     <section class="aside-section-2">
-      <button id="pastTripsButton">See Previous Trips</button>
-      <button id="pendingTripsButton">See Pending Trips</button>
-      <button id="seeAllTripsButton">See All Trips</button>
+      <button class="main-button" id="pastTripsButton">See Previous Trips</button>
+      <button class="main-button" id="pendingTripsButton">See Pending Trips</button>
+      <button class="main-button" id="seeAllTripsButton">See All Trips</button>
     </section>
     <section class="aside-section-3">
       <h2 tabindex="0">Spent on Trips this Year</h2>
@@ -37,6 +36,7 @@
   </aside>
   <main class="hidden" id="main">
     <h1 tabindex="0" class="main-header" id="mainHeader">Your Trips</h1>
+    <p class="no-pending-trips hidden" id="noPendingTrips">You don't have any trips planned!  Book a new trip now!</p>
     <section class="trips-container" id="tripsContainer"></section>
     <form class="book-trip-form hidden" id="form">
       <p tabindex="0" class="error-message hidden" id="errorMessage"></p>

@@ -120,10 +120,11 @@ const displayUserWelcome = (travelerData, userId) => {
 const getTripsAndDestinations = (tripsData, destinationData) => {
     travelersTrips = traveler.getTrips(tripsData);
     displayTripTotal(travelersTrips, destinationData);
-    travelersDestinations = travelersTrips.usersTrips.reduce((arr, trip) => {
-        arr.push(new Destination(destinationData, trip.destinationID))
-        return arr
-    },[]);
+    travelersDestinations = travelersTrips.findDestinations(travelersTrips.usersTrips, destinationData);
+    // travelersDestinations = travelersTrips.usersTrips.reduce((arr, trip) => {
+    //     arr.push(new Destination(destinationData, trip.destinationID))
+    //     return arr
+    // },[]);
 };
 
 const displayDestinationImages = () => {
@@ -252,10 +253,11 @@ const checkInputSubmit = (id, userID, destinationID, travelers, date, duration, 
 const displayPendingTrips = () => {
     tripsContainer.innerHTML = '';
     const pendingTrips = travelersTrips.findPendingTrips();
-    const destinations = pendingTrips.reduce((arr, trip) => {
-        arr.push(new Destination(destinationData, trip.destinationID))
-        return arr
-    },[]);
+    const destinations = travelersTrips.findDestinations(pendingTrips, destinationData);
+    // const destinations = pendingTrips.reduce((arr, trip) => {
+    //     arr.push(new Destination(destinationData, trip.destinationID))
+    //     return arr
+    // },[]);
     if (pendingTrips.length === 0) {
         noPendingTrips.classList.remove('hidden')
     } else {
@@ -267,10 +269,11 @@ const displayPastTrips = () => {
     tripsContainer.innerHTML = '';
     noPendingTrips.classList.add('hidden')
     const pastTrips = travelersTrips.findPastTrips();
-    const destinations = pastTrips.reduce((arr, trip) => {
-        arr.push(new Destination(destinationData, trip.destinationID))
-        return arr
-    },[]);
+    const destinations = travelersTrips.findDestinations(pastTrips, destinationData);
+    // const destinations = pastTrips.reduce((arr, trip) => {
+    //     arr.push(new Destination(destinationData, trip.destinationID))
+    //     return arr
+    // },[]);
     displayTrips(pastTrips, destinations);
 };
 

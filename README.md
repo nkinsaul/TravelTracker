@@ -49,10 +49,9 @@
 *More information can be found on [the official project specifications document](https://frontend.turing.edu/projects/travel-tracker.html).*
 
 ## Demonstration
-The video below demonstrates a user interacting with the main HeathDash application interface. They are showing how to show and hide visual displays of charts for the following measurements: water intake over the course of a week by fluid ounces, hours slept over the course of a week, and sleep quality over the course of a week. The web application is also able to show a different user's information upon refreshing the web browser.
+The video below demonstrates a user interacting with the main Travel Tracker application interface. They look at previous, pending, and all trips and then book a new trip.
 
-https://user-images.githubusercontent.com/103916293/207191034-b43fa333-bcd2-4a0f-922e-fb156b81b6ca.mp4
-
+https://user-images.githubusercontent.com/67208858/212809945-ecba4439-ef12-40e8-a4ae-17a158d3054c.mp4
 
 ## Technologies Used
 - Javascript (ES5, ES6)

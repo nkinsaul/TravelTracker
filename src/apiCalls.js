@@ -3,12 +3,12 @@ import { pleaseTryAgainError } from "./scripts"
 const fetchData = (urlPath) => {
     return fetch(`http://localhost:3001/api/v1/${urlPath}`)
             .then(response => {
-                if(response.ok) {
+                if (response.ok) {
                     return response.json()
                 }
                 response.json()
                 .then(data => console.log(data))
-                throw new Error(data)
+                throw new Error(error)
             })    
             .catch((error) => {
                 console.log(error)
@@ -34,13 +34,13 @@ const addTripData = (id, userID, destinationID, travelers, date, duration) => {
     })
     .then(response => {
         console.log('response:', response)
-        if(response.ok) {
+        if (response.ok) {
             return response.json()
         } 
         response.json()
         .then(data => console.log(data))
         pleaseTryAgainError()
-        throw new Error(data)
+        throw new Error(error)
     })
     .catch((error) => {
         console.log(error)

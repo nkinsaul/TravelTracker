@@ -1,6 +1,5 @@
 import Destination from "./Destinations";
 import dayjs from "dayjs";
-import trips from "./data/mock-Trips-data";
 
 class Trips {
     constructor(tripData, userId) {
@@ -10,7 +9,7 @@ class Trips {
         const allTrips = tripData.filter(trip => {
             return trip.userID === userId
         });
-        const convertDate = allTrips.forEach(trip => {
+        allTrips.forEach(trip => {
             trip.date = Date.parse(trip.date)
         })
         const sortedTrips = allTrips.sort((a, b) => {

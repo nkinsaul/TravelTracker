@@ -28,6 +28,18 @@ describe ("Traveler", function () {
             });
     });
 
+    it('should be able to hold a users first name', () => {
+        const travelersName = traveler1.travelerData.name
+
+        expect(travelersName).to.equal("Ham Leadbeater")
+    });
+
+    it('should be able to hold a travelers type', () => {
+        const usersTravelerType = traveler1.travelerData.travelerType
+        
+        expect(usersTravelerType).to.equal('relaxer');
+    })
+
     it('should return a single users first name', () => {
         const traveler1FirstName = traveler1.getTravelersFirstName()
         expect(traveler1FirstName).to.equal('Ham')

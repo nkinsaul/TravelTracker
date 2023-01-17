@@ -244,6 +244,20 @@ describe ("Trips", function() {
           "alt": "colorful buildings near the water with docked boats",
           }
       ])
+    });
+
+    it('should find pending trips destinations', function() {
+      const pendingTrips = tripsData.findPendingTrips();
+      const pendingDestinations = tripsData.findDestinations(pendingTrips, destinations);
+
+      expect(pendingDestinations).to.deep.equal([ {
+        "id": 22,
+        "destination": "Rome, Italy",
+        "estimatedLodgingCostPerDay": 90,
+        "estimatedFlightCostPerPerson": 650,
+        "image": "https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
+        "alt": "people standing inside a colosseum during the day",
+        }])
     })
 });
 

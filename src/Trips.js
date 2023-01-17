@@ -26,10 +26,6 @@ class Trips {
             return trip.status === 'pending'
         });
     }
-    findTripDestination(destinationData, destinationId) {
-        const destination = new Destination(destinationData, destinationId)
-        return destination.oneDestination
-    }
     findTripsFromThisYear() {
         return this.usersTrips.filter(trip => {
             return dayjs().year() === parseInt(trip.date.slice(0, 4))

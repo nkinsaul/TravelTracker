@@ -25,14 +25,14 @@
 1. Copy the following SSH link: `git@github.com:nkinsaul/TravelTracker.git`
 2. After determining one's desired installation location, open one's command line interpreter and run the following text into one's command line interpreter: `git clone git@github.com:nkinsaul/HealthDash.git`
 3. Install NPM packages:
-  1. Run `npm install` to install project dependencies.
-  2. Run `npm install dayjs`
+    1. Run `npm install` to install project dependencies.
+    2. Run `npm install dayjs`
 4. Run `npm start` to start running the local server
 5. Clone down the local API server using this SSH link: `git@github.com:turingschool-examples/travel-tracker-api.git`
-  1. run `npm install`
-  2. run `npm start` to start running the API server
+    1. run `npm install`
+    2. run `npm start` to start running the API server
 6. Enter `https://localhost:8080` in your web browser to view the web application.
-  1. To stop the web application from running on one's local server, enter `CTRL + C` into one's command line interpreter.
+    1. To stop the web application from running on one's local server, enter `CTRL + C` into one's command line interpreter.
 
 ## Developers
 - [Natalie Kinsaul](https://github.com/nkinsaul)

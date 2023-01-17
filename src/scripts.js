@@ -212,10 +212,9 @@ const clearForm = () => {
 };
 
 const pleaseTryAgainError = () => {
-    let message = document.createElement('p');
-    message.innerText = 'Uh oh, there was a problem, please try again.'
-    form.prepend(message);
-    setTimeout(() => message.classList.add('hidden'), 3000);
+    errorMessage.innerText = 'Uh oh, there was a problem, please try again.'
+    errorMessage.classList.remove('hidden')
+    setTimeout(() => errorMessage.classList.add('hidden'), 3000);
 };
 
 const checkInputSubmit = (id, userID, destinationID, travelers, date, duration, dateCheck) => {
@@ -318,7 +317,7 @@ const displayExtendedBookingError = () => {
 }
 
 const displayLargePartyBookingError = () => {
-    message.innerText = 'For bookings with large parties please call 1-888-BOOK-NOW';
+    errorMessage.innerText = 'For bookings with large parties please call 1-888-BOOK-NOW';
     errorMessage.classList.remove('hidden');
     setTimeout(() => errorMessage.classList.add('hidden'), 4000)
 }

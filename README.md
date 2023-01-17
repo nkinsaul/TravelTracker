@@ -1,101 +1,83 @@
-# Webpack Starter Kit
 
-## Clone This Repo
+# Travel Tracker
 
-CHECK 1-2
+## Table of Contents
 
-That's right, _clone_ not fork. You will use this repo multiple times, but you can only fork a repository once. So here is what you need to do to clone the repo and still be able to push changes to your repo:
+  * [Abstract](#abstract)
+  * [Set-Up Instructions](#set-up-instructions)
+  * [Developers](#developers)
+  * [Goals](#goals)
+  * [Demonstration](#demonstration)
+  * [Technologies Used](#technologies-used)
+  * [Reflections](#reflections)
+    + [Challenges](#challenges)
+    + [Wins](#wins)
+  * [Acknowledgements](#acknowledgements)
+  
+## Abstract
+**Travel Tracker** is a web application that allows a user to view and sort trips they have taken and also allows them to book new trips.  After logging into their account, they can view their trips and see the following information:
+- The location of their trip
+- The duration of their trip
+- The number of travelers of their trip
+- An image representing their travel location
 
-1. Clone down this repo. Since you don't want to name your project "webpack-starter-kit", you can use an optional argument when you run `git clone` (you replace the `[...]` with the terminal command arguments): `git clone [remote-address] [what you want to name the repo]`
-1. Remove the default remote: `git remote rm origin` (notice that `git remote -v` not gives you back nothing)
-1. Create a new repo on GitHub with the name of `[what you want to name the repo]` to be consistent with naming
-1. Copy the address that you would use to clone down this repo - something like `git@github.com:...`
-1. Add this remote to your cloned down repo: `git remote add origin [address you copied in the previous step]` - do not include the brackets
+## Set-Up Instructions
+1. Copy the following SSH link: `git@github.com:nkinsaul/TravelTracker.git`
+2. After determining one's desired installation location, open one's command line interpreter and run the following text into one's command line interpreter: `git clone git@github.com:nkinsaul/HealthDash.git`
+3. Install NPM packages:
+  1. Run `npm install` to install project dependencies.
+  2. Run `npm install dayjs`
+4. Run `npm start` to start running the local server
+5. Clone down the local API server using this SSH link: `git@github.com:turingschool-examples/travel-tracker-api.git`
+  1. run `npm install`
+  2. run `npm start` to start running the API server
+6. Enter `https://localhost:8080` in your web browser to view the web application.
+  1. To stop the web application from running on one's local server, enter `CTRL + C` into one's command line interpreter.
 
-Now try to commit something (just add a line in the README) and push it up to your new repo. If everything is setup correctly, you should see the changes on GitHub.
+## Developers
+- [Natalie Kinsaul](https://github.com/nkinsaul)
 
-## Setup
+## Goals
+- Write clean and concise JS, with limited duplications 
+- Use object and array prototype methods to perform data manipulation
+- Create a dashboard that is easy to use and displays information in an accessible way for users
+- Write code that follows SRP (Single Responsibility Principle).
+- Use TDD to implement robust testing suites
+- Make network requests to retrieve data using `.fetch()` and other methods
+- Create a well implemented login page 
 
-After one person has gone through the steps of cloning down this repo and editing the remote, everyone should clone down the repo.
+*More information can be found on [the official project specifications document](https://frontend.turing.edu/projects/travel-tracker.html).*
 
-Then install the library dependencies. Run:
+## Demonstration
+The video below demonstrates a user interacting with the main HeathDash application interface. They are showing how to show and hide visual displays of charts for the following measurements: water intake over the course of a week by fluid ounces, hours slept over the course of a week, and sleep quality over the course of a week. The web application is also able to show a different user's information upon refreshing the web browser.
 
-```bash
-npm install
-```
+https://user-images.githubusercontent.com/103916293/207191034-b43fa333-bcd2-4a0f-922e-fb156b81b6ca.mp4
 
-To verify that it is setup correctly, run `npm start` in your terminal. Go to `http://localhost:8080/` and you should see a page with the Turing logo image and a beautiful gradient background. If that's the case, you're good to go. Enter `control + c` in your terminal to stop the server at any time.
 
-## Where to Add Your Code
+## Technologies Used
+- Javascript (ES5, ES6)
+- HTML
+- CSS
+- [Node.js](https://nodejs.org/en/)
+- [Mocha](https://mochajs.org/)
+- [Chai](https://www.chaijs.com/)
+- dayjs
 
-### JavaScript
+## Reflections
+### Challenges
+- It was difficult getting started on this project as it was entirely up to me to decide how to approach everything
+- Getting the classes set up in a way that felt clean and concise was challenging. I am satisfied with where it ended up but I think there is still room for improvement.
+- Implementing a login page for the first time was a little daunting and it took me a little while to figure out the logic but ended up not being too difficult once I got over the intial hump of trying to do something I'd never done before.
+- I think my grasp of error handling could still use improvement.
 
-You have to be very intentional with where you add your feature code. This repo uses a tool called [webpack](https://webpack.js.org/) to combine many JavaScript files into one big file. Webpack enables you to have many, separate JavaScript files to keep your code organized and readable. Webpack expects all of your code files to be in a specific place, or else it doesn't know how to combine them all behind the scenes.
+### Wins
+- I successfully completed the first 4 iterations laid out in the project spec and my app runs without error.
+- I successfully implemented dayjs
+- I am pretty happy with how the app looks.  It is simple yet effective.
+- I was able to complete the project almost entirely on my own.  I got help looking at a couple of minor problems but otherwise was totally self sufficient.
 
-**Create all of your feature code files in the `src` directory.**
 
-Since code is separated into multiple files, you need to use the `import` and `export` syntax to share code across file.
 
-Here is a video that walks through some information about [import and export](https://www.youtube.com/watch?v=_3oSWwapPKQ). There are a lot of resources out there about `import` and `export`, and resources will sometimes call them `ES6 modules`. It's something you will see in React and beyond.
 
-### HTML
 
-Add the HTML you need in the `index.html` file in the `./dist` directory. There is some boilerplate HTML that exists from the start that you can modify.
 
-### Images
-
-Add your image files in the `src/images` directory. Similar to CSS files, you need to `import` image files in the JavaScript entry file (`scripts.js`). Then go into the HTML and add an `img` element with the `src` attribute pointing to the `images` directory. There is an example in the `index.html` file for you to see.
-
-## How to View Your Code in Action
-
-In the terminal, run:
-
-```bash
-npm start
-```
-
-You will see a bunch of lines output to your terminal. One of those lines will be something like:
-
-```bash
-Project is running at http://localhost:8080/
-```
-
-Go to `http://localhost:8080/` in your browser to view your code running in the browser.
-
----
-
-## Test Files Organization
-
-Similar to feature code, your test code needs to be put in a specific place for it to run successfully.
-
-**Put all of your test files in the `test` directory.** As a convention, all test filenames should end with `-test.js`. For instance: `box-test.js`.
-
-## Running Your Tests
-
-Run your test suite using the command:
-
-```bash
-npm test
-```
-
-The test results will output to the terminal.
-
----
-
-## Linting Your Code
-
-Run the command in your terminal `npm run lint` to run the linter on your JavaScript code. There will be errors and warnings right from the start in this starter kit - the linter is still running successfully.
-
-Your linter will look at the JavaScript files you have within the `src` directory and the `test` directory.
-
-## Webpack?
-
-If you look in the `package.json` file, you'll see one of the library dependencies called `webpack`. If you're interested in learning more about what Webpack is and how it works behind the scenes, take a look through the [Webpack configuration documentation](https://webpack.js.org/concepts/).
-
-## Deploying to GitHub Pages
-
-_If you are finished with the functionality and testing of your project_, then you can consider deploying your project to the web! This way anyone can play it without cloning down your repo.
-
-[GitHub Pages](https://pages.github.com/) is a great way to deploy your project to the web. Don't worry about this until your project is free of bugs and well tested!
-
-If you _are_ done, you can follow [this procedure](./gh-pages-procedure.md) to get your project live on GitHub Pages.

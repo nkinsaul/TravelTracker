@@ -81,11 +81,6 @@ describe ("Trips", function() {
         )
     })
 
-    it('should find a users approved trips', () => {
-        const user25ApprovedTrips = tripsData.findApprovedTrips(25)
-        expect(user25ApprovedTrips.length).to.equal(4) 
-    });
-
     it('should find pending trips for a user', () => {
         const user25PendingTrips = tripsData.findPendingTrips(25)
         expect(user25PendingTrips).to.deep.equal([{
@@ -99,41 +94,6 @@ describe ("Trips", function() {
             "suggestedActivities": []
             }]);
     });
-
-    it('can find a single trip', () => {
-        const myTrip = tripsData.findSingleTrip(138)
-
-        expect(myTrip).to.deep.equal({
-            "id": 138,
-            "userID": 25,
-            "destinationID": 22,
-            "travelers": 3,
-            "date": "2020/10/29",
-            "duration": 18,
-            "status": "pending",
-            "suggestedActivities": []
-            })
-    })
-
-    it('can find a trips destination info', () => {
-        const myTrip = tripsData.findSingleTrip(138)
-        const myTripDestination = tripsData.findTripDestination(destinations, myTrip.destinationID)
-
-        expect(myTripDestination).to.deep.equal({
-            "id": 22,
-            "destination": "Rome, Italy",
-            "estimatedLodgingCostPerDay": 90,
-            "estimatedFlightCostPerPerson": 650,
-            "image": "https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
-            "alt": "people standing inside a colosseum during the day"
-            })
-    })
-
-    it('should calculate a trips cost', () => {
-        const tripCost = tripsData.calculateTripCost(138, destinations)
-
-        expect(tripCost).to.equal(3927)
-    })
 
     it('should find trips from the current year', () => {
         const thisYearsTrips = tripsData.findTripsFromThisYear();
@@ -200,5 +160,104 @@ describe ("Trips", function() {
           }])
     })
 
+    it('should find trip destinations', function() {
+      const allDestinations = tripsData.findDestinations(traveler25Trips, destinations);
+
+      expect(allDestinations).to.deep.equal([{
+        "id": 28,
+        "destination": "San Juan, Puerto Rico",
+        "estimatedLodgingCostPerDay": 70,
+        "estimatedFlightCostPerPerson": 900,
+        "image": "https://images.unsplash.com/photo-1580237541049-2d715a09486e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2090&q=80",
+        "alt": "white and brown concrete buildings near sea under white clouds during daytime",
+        },
+        {
+        "id": 22,
+        "destination": "Rome, Italy",
+        "estimatedLodgingCostPerDay": 90,
+        "estimatedFlightCostPerPerson": 650,
+        "image": "https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
+        "alt": "people standing inside a colosseum during the day",
+        },
+        {
+        "id": 42,
+        "destination": "Santo Domingo, Dominican Republic",
+        "estimatedLodgingCostPerDay": 400,
+        "estimatedFlightCostPerPerson": 80,
+        "image": "https://images.unsplash.com/photo-1510541383520-4daa77a666cf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1782&q=80",
+        "alt": "aerial view of houses and high rise building",
+        },
+        {
+        "id": 15,
+        "destination": "Manila, Philippines",
+        "estimatedLodgingCostPerDay": 40,
+        "estimatedFlightCostPerPerson": 900,
+        "image": "https://images.unsplash.com/photo-1555557356-51c5d7a8f4c2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
+        "alt": "colorful buildings near the water with docked boats",
+        },
+        {
+        "id": 15,
+        "destination": "Manila, Philippines",
+        "estimatedLodgingCostPerDay": 40,
+        "estimatedFlightCostPerPerson": 900,
+        "image": "https://images.unsplash.com/photo-1555557356-51c5d7a8f4c2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
+        "alt": "colorful buildings near the water with docked boats",
+        }
+      ])
+    });
+
+    it('should find past trip destinations', function() {
+      const pastTrips = tripsData.findPastTrips();
+      const pastDestinations = tripsData.findDestinations(pastTrips, destinations);
+
+      expect(pastDestinations).to.deep.equal([
+        {
+          "id": 22,
+          "destination": "Rome, Italy",
+          "estimatedLodgingCostPerDay": 90,
+          "estimatedFlightCostPerPerson": 650,
+          "image": "https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
+          "alt": "people standing inside a colosseum during the day",
+          },
+          {
+          "id": 42,
+          "destination": "Santo Domingo, Dominican Republic",
+          "estimatedLodgingCostPerDay": 400,
+          "estimatedFlightCostPerPerson": 80,
+          "image": "https://images.unsplash.com/photo-1510541383520-4daa77a666cf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1782&q=80",
+          "alt": "aerial view of houses and high rise building",
+          },
+          {
+          "id": 15,
+          "destination": "Manila, Philippines",
+          "estimatedLodgingCostPerDay": 40,
+          "estimatedFlightCostPerPerson": 900,
+          "image": "https://images.unsplash.com/photo-1555557356-51c5d7a8f4c2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
+          "alt": "colorful buildings near the water with docked boats",
+          },
+          {
+          "id": 15,
+          "destination": "Manila, Philippines",
+          "estimatedLodgingCostPerDay": 40,
+          "estimatedFlightCostPerPerson": 900,
+          "image": "https://images.unsplash.com/photo-1555557356-51c5d7a8f4c2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
+          "alt": "colorful buildings near the water with docked boats",
+          }
+      ])
+    });
+
+    it('should find pending trips destinations', function() {
+      const pendingTrips = tripsData.findPendingTrips();
+      const pendingDestinations = tripsData.findDestinations(pendingTrips, destinations);
+
+      expect(pendingDestinations).to.deep.equal([ {
+        "id": 22,
+        "destination": "Rome, Italy",
+        "estimatedLodgingCostPerDay": 90,
+        "estimatedFlightCostPerPerson": 650,
+        "image": "https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
+        "alt": "people standing inside a colosseum during the day",
+        }])
+    })
 });
 

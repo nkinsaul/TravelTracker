@@ -21,36 +21,15 @@ class Trips {
         })
         return sortedTrips
     }
-    findApprovedTrips() {
-        return this.usersTrips.filter(trip => {
-            return trip.status === 'approved'
-        });
-    }
     findPendingTrips() {
         return this.usersTrips.filter(trip => {
             return trip.status === 'pending'
         });
     }
-    findSingleTrip(tripId) {
-        return this.usersTrips.find(trip => {
-            return trip.id === tripId
-        })
-    }
-    findTripDestination(destinationData, destinationId) {
-        const destination = new Destination(destinationData, destinationId)
-        return destination.oneDestination
-    }
     findTripsFromThisYear() {
         return this.usersTrips.filter(trip => {
             return dayjs().year() === parseInt(trip.date.slice(0, 4))
         })
-    }
-    calculateTripCost(tripId, destinationData) {
-        const trip = this.findSingleTrip(tripId)
-        const destination = this.findTripDestination(destinationData, trip.destinationID)
-        const tripTotal = (destination.estimatedLodgingCostPerDay * trip.duration) + (destination.estimatedFlightCostPerPerson * trip.travelers)
-        const agentFee = tripTotal * .10
-        return tripTotal + agentFee
     }
     findTotalTripsCost(destinationData) {
         const thisYearsTrips = this.findTripsFromThisYear()
@@ -69,7 +48,7 @@ class Trips {
             sum += cost
             return sum
         },0)
-        return sumTripTotals
+        return Math.round(sumTripTotals)
     }
     findPastTrips () {
         const today = new Date()
@@ -81,6 +60,12 @@ class Trips {
             trip.date =  dayjs(trip.date).format('YYYY/MM/DD')
         })
         return convertDates
+    }
+    findDestinations (trips, destinations) {
+        return trips.reduce((arr, trip) => {
+            arr.push(new Destination(destinations, trip.destinationID))
+            return arr
+        },[]);
     }
 }
 

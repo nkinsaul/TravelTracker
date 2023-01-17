@@ -51,8 +51,3 @@ const addTripData = (id, userID, destinationID, travelers, date, duration) => {
 
 export {fetchData};
 export {addTripData}
-
-
-
-//  .then(response => response.json())
-// .then(data => console.log(data))

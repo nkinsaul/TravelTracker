@@ -273,7 +273,7 @@ const displayPastTrips = () => {
 const showTripEstimate = (destinationData, destinationId, duration, travelers) => {
     const newDestination = new Destination(destinationData, destinationId);
     const tripCost = newDestination.estimateTripCost(duration, travelers);
-    errorMessage.innerText = `Your estimated trip cost is $${tripCost}. Click submit to book your trip!`
+    errorMessage.innerText = `Your estimated trip cost is $${tripCost}. Click submit to request your trip!`
     errorMessage.classList.remove('hidden');
 };
 
@@ -285,7 +285,12 @@ const checkInputEstimate = (destinationData, destinationId, duration, travelers,
         displayLargePartyBookingError();
     } else if (date <= today) {
         displayPastDateError();
-    } else if (dateInput.value === '' || durationInput.vale === '' || numTravelersInput.value === '') {
+    } else if (travelers < 1) {
+        displayTravelersError();
+    } else if (duration < 1) {
+        displayTripLengthError();
+    }
+    else if (dateInput.value === '' || durationInput.vale === '' || numTravelersInput.value === '') {
         displayAllFieldsError();
     } else {
         showTripEstimate(destinationData, destinationId, duration, travelers);
@@ -337,6 +342,18 @@ const displayPastDateError = () => {
 const displayAllFieldsError = () => {
     errorMessage.innerText = `Please fill out all fields`
     errorMessage.classList.remove('hidden')
+    setTimeout(() => errorMessage.classList.add('hidden'), 3000)
+}
+
+const displayTripLengthError = () => {
+    errorMessage.innerText = `Please enter the length of your trip.`
+    errorMessage.classList.remove('hidden')
+    setTimeout(() => errorMessage.classList.add('hidden'), 3000)
+}
+
+const displayTravelersError = () => {
+    errorMessage.innerText = `Please enter the number of travelers on your trip.`
+    errorMessage.classList.remove('hidden');
     setTimeout(() => errorMessage.classList.add('hidden'), 3000)
 }
 

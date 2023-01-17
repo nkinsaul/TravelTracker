@@ -12,7 +12,6 @@
   * [Reflections](#reflections)
     + [Challenges](#challenges)
     + [Wins](#wins)
-  * [Acknowledgements](#acknowledgements)
   
 ## Abstract
 **Travel Tracker** is a web application that allows a user to view and sort trips they have taken and also allows them to book new trips.  After logging into their account, they can view their trips and see the following information:

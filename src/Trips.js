@@ -69,7 +69,7 @@ class Trips {
             sum += cost
             return sum
         },0)
-        return sumTripTotals
+        return Math.round(sumTripTotals)
     }
     findPastTrips () {
         const today = new Date()

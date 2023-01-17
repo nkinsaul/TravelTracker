@@ -52,10 +52,7 @@ main {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  /* grid-template-columns: max-content;
-  grid-template-rows: max-content; */
   gap: 2%;
-  /* padding: 0% 0% 5% 0%; */
 }
 
 .no-pending-trips {
@@ -157,8 +154,9 @@ input, select {
   position: relative;
   bottom: 78%;
   background-color: rgba(0, 71, 119, .5);
-  width: 100%;
-  text-align: center;
+  width: 90%;
+  text-align: left;
+  padding: 0% 0% 0% 10%;
 }
 
 .login-form {
@@ -203,3 +201,4 @@ input, select {
   text-align: center;
   border-radius: 10px;
 }
+

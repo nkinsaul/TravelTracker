@@ -155,7 +155,7 @@ const displayTrips = (trips, destinations) => {
         destName.innerHTML = destinations[index].destination
         tripDate.innerText = `Trip Date: ${dayjs(trip.date).format('MMM D, YYYY')}`
         tripDuration.innerText = `Duration: ${trip.duration} days`
-        numTravelers.innerText = `${trip.travelers} Travelers`
+        numTravelers.innerText = `Travelers: ${trip.travelers}`
         tripsContainer.appendChild(tripDestination)
         tripDestination.appendChild(img)
         tripDestination.appendChild(destName)

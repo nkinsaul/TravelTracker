@@ -16,7 +16,7 @@ class Destination {
     estimateTripCost(duration, travelers) {
         const tripCost = (this.estimatedLodgingCostPerDay * duration) + (this.estimatedFlightCostPerPerson * travelers)
         const agentFee = tripCost * .1
-        return tripCost + agentFee
+        return Math.round(tripCost + agentFee)
     }
 }
 

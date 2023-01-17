@@ -217,6 +217,12 @@ const pleaseTryAgainError = () => {
     setTimeout(() => errorMessage.classList.add('hidden'), 3000);
 };
 
+const pleaseRefreshError = () => {
+    loginErrorMessage.innerText = 'Uh oh, there was a problem, please refresh the page.'
+    loginErrorMessage.classList.remove('hidden');
+    setTimeout(() => loginErrorMessage.classList.add('hidden'), 3000);
+};
+
 const checkInputSubmit = (id, userID, destinationID, travelers, date, duration, dateCheck) => {
     let today = new Date();
     if (durationInput.value > 30) {
@@ -335,5 +341,6 @@ const displayAllFieldsError = () => {
 }
 
 export {pleaseTryAgainError}
+export {pleaseRefreshError}
 
 

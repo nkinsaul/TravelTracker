@@ -46,7 +46,7 @@ class Trips {
         const sumTripTotals = calculateTripCost.reduce((sum, cost) => {
             sum += cost
             return sum
-        },0)
+        }, 0)
         return Math.round(sumTripTotals)
     }
     findPastTrips () {
@@ -64,7 +64,7 @@ class Trips {
         return trips.reduce((arr, trip) => {
             arr.push(new Destination(destinations, trip.destinationID))
             return arr
-        },[]);
+        }, []);
     }
 }
 

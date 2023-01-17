@@ -1,4 +1,5 @@
 import { pleaseTryAgainError } from "./scripts"
+import { pleaseRefreshError } from "./scripts"
 
 const fetchData = (urlPath) => {
     return fetch(`http://localhost:3001/api/v1/${urlPath}`)
@@ -8,10 +9,11 @@ const fetchData = (urlPath) => {
                 }
                 response.json()
                 .then(data => console.log(data))
-                throw new Error(error)
+                pleaseRefreshError()
+                throw new Error(`Something went wrong, please refresh page`)
             })    
             .catch((error) => {
-                console.log(error)
+                console.log(error);
             }) 
 }
 
@@ -19,12 +21,12 @@ const addTripData = (id, userID, destinationID, travelers, date, duration) => {
     return fetch('http://localhost:3001/api/v1/trips', {
         method: "POST",
         body: JSON.stringify({
-            id: id,
-            userID: userID,
-            destinationID: destinationID,
-            travelers: travelers,
-            date: date,
-            duration: duration,
+            id,
+            userID,
+            destinationID,
+            travelers,
+            date,
+            duration,
             status: 'pending',
             suggestedActivities: []
         }),
@@ -40,10 +42,10 @@ const addTripData = (id, userID, destinationID, travelers, date, duration) => {
         response.json()
         .then(data => console.log(data))
         pleaseTryAgainError()
-        throw new Error(error)
+        throw new Error(`Something went wrong, please try again`)
     })
     .catch((error) => {
-        console.log(error)
+        console.log(error);
     })
 }
 

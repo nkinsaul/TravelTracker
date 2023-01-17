@@ -59,7 +59,7 @@ backToTripsButton.addEventListener('click', function(event) {
     pastTripsButton.classList.remove('hidden');
 });
 
-form.addEventListener('submit', function(event){
+form.addEventListener('submit', function(event) {
     event.preventDefault();
     let dateCheck = new Date(dateInput.value);
     let modifyDate = dateInput.value.replaceAll('-', '/');
@@ -109,7 +109,7 @@ function onLoad (travelerData, tripsData, destinationData) {
     getTripsAndDestinations(tripsData, destinationData);
     displayDestinationImages(tripsData, destinationData);
     generateTripID(tripsData);
-};
+}
 
 const displayUserWelcome = (travelerData, userId) => {
     traveler = new Traveler(travelerData, userId);
@@ -212,10 +212,9 @@ const clearForm = () => {
 };
 
 const pleaseTryAgainError = () => {
-    let message = document.createElement('p');
-    message.innerText = 'Uh oh, there was a problem, please try again.'
-    form.prepend(message);
-    setTimeout(() => message.classList.add('hidden'), 3000);
+    errorMessage.innerText = 'Uh oh, there was a problem, please try again.'
+    errorMessage.classList.remove('hidden')
+    setTimeout(() => errorMessage.classList.add('hidden'), 3000);
 };
 
 const checkInputSubmit = (id, userID, destinationID, travelers, date, duration, dateCheck) => {
@@ -293,7 +292,7 @@ const checkLogin = (travelerData) => {
     });
     const slicedNumber = parseInt(userName.value.slice(8, 10));
     const slicedName = userName.value.slice(0, 8);
-    if(slicedName === 'traveler' && logins.includes(slicedNumber) && password.value === 'travel') {
+    if (slicedName === 'traveler' && logins.includes(slicedNumber) && password.value === 'travel') {
         userId = slicedNumber
         Promise.all([fetchData('trips'), fetchData('destinations')])
         .then(data => {
@@ -308,7 +307,7 @@ const checkLogin = (travelerData) => {
         loginErrorMessage.innerText = `Whoops, that doesn't match our records, please re-enter your login information`
         loginErrorMessage.classList.remove('hidden')
         setTimeout(() => loginErrorMessage.classList.add('hidden'), 3000)
-    };
+    }
 };
 
 const displayExtendedBookingError = () => {
@@ -318,7 +317,7 @@ const displayExtendedBookingError = () => {
 }
 
 const displayLargePartyBookingError = () => {
-    message.innerText = 'For bookings with large parties please call 1-888-BOOK-NOW';
+    errorMessage.innerText = 'For bookings with large parties please call 1-888-BOOK-NOW';
     errorMessage.classList.remove('hidden');
     setTimeout(() => errorMessage.classList.add('hidden'), 4000)
 }

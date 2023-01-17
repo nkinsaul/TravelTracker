@@ -23,7 +23,7 @@
 
 ## Set-Up Instructions
 1. Copy the following SSH link: `git@github.com:nkinsaul/TravelTracker.git`
-2. After determining one's desired installation location, open one's command line interpreter and run the following text into one's command line interpreter: `git@github.com:nkinsaul/TravelTracker.git`
+2. After determining one's desired installation location, open one's command line interpreter and run the following text into one's command line interpreter: `git clone git@github.com:nkinsaul/TravelTracker.git`
 3. Install NPM packages:
     1. Run `npm install` to install project dependencies.
     2. Run `npm install dayjs`

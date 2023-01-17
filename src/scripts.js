@@ -172,7 +172,7 @@ const displayForm = () => {
     noPendingTrips.classList.add('hidden');
     tripsContainer.classList.add('hidden');
     form.classList.remove('hidden');
-    mainHeader.innerText = "Book a New Trip"
+    mainHeader.innerText = "Request a New Trip"
     bookTripButton.classList.add('hidden');
     pendingButton.classList.add('hidden');
     allTripsButton.classList.add('hidden');
@@ -238,7 +238,7 @@ const checkInputSubmit = (id, userID, destinationID, travelers, date, duration, 
         .then(fetchNewData())
         clearForm();
         setTimeout(() => fetchNewData(), 1000);
-        errorMessage.innerText = 'Booked!';
+        errorMessage.innerText = 'Trip has been requested!';
         errorMessage.classList.remove('hidden');
         setTimeout(() => errorMessage.classList.add('hidden'), 3000);
         setTimeout(() => form.classList.add('hidden'), 3000);

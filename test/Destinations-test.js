@@ -23,7 +23,6 @@ describe('Destinations', function() {
     });
 
     it('should have a location', () => {
-        // console.log(newDestination.d)
         expect(newDestination.destination).to.equal('Manila, Philippines')
     });
     
